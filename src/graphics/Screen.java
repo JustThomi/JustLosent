@@ -5,12 +5,18 @@ import java.util.Random;
 public class Screen {
     private int width, height;
     private final int mapSize = 64;
-    private final int tileSize = 4; // actual size: 8
+    // private final int tileSize = 4; // actual size: 16
 
     public int[] pixels;
 
     public int[] tiles = new int[mapSize * mapSize];
     private Random random = new Random();
+
+    // TILESET
+    public static SpriteSheet groundSheet = new SpriteSheet("../assets/tileset.png", 512);
+
+    // TILE
+    public static Sprite metalFlore = new Sprite(16, 0, 0, groundSheet);
 
     public Screen(int width, int height) {
         this.width = width;
@@ -30,15 +36,17 @@ public class Screen {
 
     public void render(int xOffset, int yOffset) {
         for (int y = 0; y < height; y++) {
-            int yy = y + yOffset;
+            // int yy = y + yOffset;
             // if (y < 0 || y >= height)
             // break;
             for (int x = 0; x < width; x++) {
-                int xx = x + xOffset;
+                // int xx = x + xOffset;
                 // if (x < 0 || x >= width)
                 // break;
-                int tileIndex = ((xx >> tileSize) & mapSize - 1) + ((yy >> tileSize) & mapSize - 1) * mapSize;
-                pixels[x + y * width] = tiles[tileIndex];
+                // int tileIndex = ((xx >> tileSize) & mapSize - 1) + ((yy >> tileSize) &
+                // mapSize - 1) * mapSize;
+                pixels[x + y * width] = metalFlore.pixels[(x & (metalFlore.SIZE - 1))
+                        + (y & (metalFlore.SIZE - 1)) * metalFlore.SIZE];
             }
         }
     }
