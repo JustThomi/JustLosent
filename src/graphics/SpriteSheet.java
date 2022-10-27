@@ -9,6 +9,10 @@ public class SpriteSheet {
     public final int SIZE;
     public int[] pixels;
 
+    // TILESET
+    public static SpriteSheet groundSheet = new SpriteSheet("/assets/tileset.png",
+            512);
+
     public SpriteSheet(String path, int size) {
         this.path = path;
         SIZE = size;

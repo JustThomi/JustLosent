@@ -1,6 +1,5 @@
 import javax.swing.JFrame;
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
@@ -59,6 +58,7 @@ public class Game extends Canvas implements Runnable {
         final double ns = 1_000_000_000.0 / fps;
         double delta = 0;
 
+        requestFocus();
         while (running) {
             long now = System.nanoTime();
             delta += (now - lastTime) / ns;
@@ -105,11 +105,6 @@ public class Game extends Canvas implements Runnable {
         }
 
         Graphics g = bs.getDrawGraphics();
-
-        // fill screen with black
-        g.setColor(Color.BLACK);
-        g.fillRect(0, 0, getWidth(), getHeight());
-
         // draw image
         g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 
