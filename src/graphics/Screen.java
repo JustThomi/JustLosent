@@ -30,43 +30,25 @@ public class Screen {
         }
     }
 
-    public void setOffset(int xOffset, int yOffset){
+    public void setOffset(int xOffset, int yOffset) {
         this.xOffset = xOffset;
         this.yOffset = yOffset;
     }
-    
+
     public void renderTile(int xtile, int ytile, Tile tile) {
         xtile -= xOffset;
         ytile -= yOffset;
         for (int y = 0; y < tile.sprite.SIZE; y++) {
-            int yAbsolute = y - ytile;
-            if (yAbsolute < 0 || yAbsolute >= width) 
-            break;
-            for (int x = 0; x < tile.sprite.SIZE; x++) {
-                int xAbsolute = x - xtile;
-                if (xAbsolute < 0 || xAbsolute >= width) 
+            int yAbsolute = y + ytile;
+            if (yAbsolute < 0 || yAbsolute >= width)
                 break;
-                
+            for (int x = 0; x < tile.sprite.SIZE; x++) {
+                int xAbsolute = x + xtile;
+                if (xAbsolute < 0 || xAbsolute >= width)
+                    break;
+
                 pixels[xAbsolute + yAbsolute * width] = tile.sprite.pixels[x + y * tile.sprite.SIZE];
             }
         }
     }
-    
-    // THIS WILL BE DELETED SOON
-    // public void render(int xOffset, int yOffset) {
-    //     for (int y = 0; y < height; y++) {
-    //         int yy = y - yOffset;
-    //         if (yy < 0 || yy >= height)
-    //             continue;
-
-    //         for (int x = 0; x < width; x++) {
-    //             int xx = x - xOffset;
-    //             if (xx < 0 || xx >= width)
-    //                 continue;
-
-    //             pixels[xx + yy * width] = Sprite.ground.pixels[(x & (Sprite.ground.SIZE - 1))
-    //                     + (y & (Sprite.ground.SIZE - 1)) * Sprite.ground.SIZE];
-    //         }
-    //     }
-    // }
 }

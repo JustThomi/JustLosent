@@ -8,8 +8,8 @@ public class Sprite {
 
     // Sprite
     public static Sprite ground = new Sprite(16, 1, 4, SpriteSheet.groundSheet);
-    public static Sprite voidSprite = new Sprite(16, 2, 4, SpriteSheet.groundSheet);
-
+    public static Sprite crackedGround = new Sprite(16, 2, 4, SpriteSheet.groundSheet);
+    public static Sprite chippedGround = new Sprite(16, 3, 4, SpriteSheet.groundSheet);
 
     public Sprite(int size, int x, int y, SpriteSheet sheet) {
         SIZE = size;
@@ -27,5 +27,4 @@ public class Sprite {
             }
         }
     }
-
 }

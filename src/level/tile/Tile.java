@@ -7,8 +7,8 @@ public class Tile {
     protected int x, y;
     public Sprite sprite;
 
-    public static Tile ground = new GroundTile(Sprite.ground);
-    public static Tile voidTile = new VoidTile(Sprite.voidSprite);
+    public static Tile ground = new Tile(Sprite.ground);
+    public static Tile crackedGround = new Tile(Sprite.crackedGround);
 
     public Tile(Sprite sprite) {
         this.sprite = sprite;

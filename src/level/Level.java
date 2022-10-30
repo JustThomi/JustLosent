@@ -4,7 +4,6 @@ import graphics.Screen;
 import level.tile.Tile;
 import java.util.Random;
 
-
 public class Level {
     protected int width, height;
     protected int[] tiles;
@@ -14,7 +13,7 @@ public class Level {
         this.width = width;
         this.height = height;
         this.tiles = new int[width * height];
-        
+
         generateLevel();
     }
 
@@ -28,7 +27,7 @@ public class Level {
                 tiles[x + y * width] = RNG.nextInt(2);
             }
         }
-    }   
+    }
 
     private void loadLevel(String path) {
     }
@@ -39,13 +38,15 @@ public class Level {
     public void update() {
     }
 
-    public Tile getTile(int x, int y){
-        if (tiles[x + y * width] == 0) return Tile.ground;
-        return Tile.voidTile;
+    public Tile getTile(int x, int y) {
+        if (tiles[x + y * width] == 0)
+            return Tile.ground;
+        return Tile.crackedGround;
     }
 
     public void render(int xScroll, int yScroll, Screen screen) {
         screen.setOffset(xScroll, yScroll);
+
         // left most border
         int x0 = xScroll >> 4;
         // right most border
