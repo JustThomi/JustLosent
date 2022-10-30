@@ -24,7 +24,7 @@ public class Level {
     protected void generateLevel() {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                tiles[x + y * width] = RNG.nextInt(2);
+                tiles[x + y * width] = RNG.nextInt(4);
             }
         }
     }
@@ -39,9 +39,15 @@ public class Level {
     }
 
     public Tile getTile(int x, int y) {
+        if (x < 0 || y < 0 || x >= width || y >= height)
+            return Tile.voidTile;
         if (tiles[x + y * width] == 0)
             return Tile.ground;
-        return Tile.crackedGround;
+        else if (tiles[x + y * width] == 1)
+            return Tile.crackedGround;
+        else if (tiles[x + y * width] == 2)
+            return Tile.chippedGround;
+        return Tile.ground;
     }
 
     public void render(int xScroll, int yScroll, Screen screen) {
@@ -50,11 +56,11 @@ public class Level {
         // left most border
         int x0 = xScroll >> 4;
         // right most border
-        int x1 = (xScroll + screen.width) >> 4;
+        int x1 = (xScroll + screen.width + 16) >> 4; // 16 is tile size
         // top most border
         int y0 = yScroll >> 4;
         // bot most border
-        int y1 = (yScroll + screen.height) >> 4;
+        int y1 = (yScroll + screen.height + 16) >> 4; // 16 is tile size
 
         for (int y = y0; y < y1; y++) {
             for (int x = x0; x < x1; x++) {

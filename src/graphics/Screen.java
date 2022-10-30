@@ -38,14 +38,21 @@ public class Screen {
     public void renderTile(int xtile, int ytile, Tile tile) {
         xtile -= xOffset;
         ytile -= yOffset;
+
         for (int y = 0; y < tile.sprite.SIZE; y++) {
             int yAbsolute = y + ytile;
-            if (yAbsolute < 0 || yAbsolute >= width)
-                break;
+
             for (int x = 0; x < tile.sprite.SIZE; x++) {
                 int xAbsolute = x + xtile;
-                if (xAbsolute < 0 || xAbsolute >= width)
+
+                if (xAbsolute < -tile.sprite.SIZE || xAbsolute >= width || yAbsolute < 0 || yAbsolute >= height)
                     break;
+
+                if (xAbsolute < 0)
+                    xAbsolute = 0;
+
+                if (yAbsolute < 0)
+                    yAbsolute = 0;
 
                 pixels[xAbsolute + yAbsolute * width] = tile.sprite.pixels[x + y * tile.sprite.SIZE];
             }
