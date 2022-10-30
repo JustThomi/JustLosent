@@ -2,9 +2,9 @@ package level.tile;
 
 import graphics.Sprite;
 
-public class GroundTile extends Tile {
+public class VoidTile extends Tile{
 
-    public GroundTile(Sprite sprite) {
+    public VoidTile(Sprite sprite) {
         super(sprite);
     }
 }

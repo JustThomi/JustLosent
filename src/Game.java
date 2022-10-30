@@ -8,6 +8,7 @@ import java.awt.image.DataBufferInt;
 
 import graphics.Screen;
 import input.Keyboard;
+import level.Level;
 
 public class Game extends Canvas implements Runnable {
 
@@ -26,12 +27,15 @@ public class Game extends Canvas implements Runnable {
     private Keyboard keyboard;
     private int xOffset = 0, yOffset = 0;
 
+    public static Level level;
+
     public Game() {
         Dimension size = new Dimension(width * scale, height * scale);
         setPreferredSize(size);
 
         frame = new JFrame();
         screen = new Screen(width, height);
+        level = new Level(64, 64);
         keyboard = new Keyboard();
         addKeyListener(keyboard);
     }
@@ -98,7 +102,7 @@ public class Game extends Canvas implements Runnable {
 
         // clear than render screen
         screen.clear();
-        screen.render(xOffset, yOffset);
+        level.render(xOffset, yOffset, screen);
 
         for (int i = 0; i < pixels.length; i++) {
             pixels[i] = screen.pixels[i];
