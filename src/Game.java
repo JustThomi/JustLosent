@@ -1,4 +1,7 @@
 import javax.swing.JFrame;
+
+import entity.Player;
+
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -7,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 
 import graphics.Screen;
+import graphics.Sprite;
 import input.Keyboard;
 import level.Level;
 
@@ -25,7 +29,7 @@ public class Game extends Canvas implements Runnable {
     private int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
 
     private Keyboard keyboard;
-    private int xOffset = 0, yOffset = 0;
+    private Player player;
 
     public static Level level;
 
@@ -37,6 +41,8 @@ public class Game extends Canvas implements Runnable {
         screen = new Screen(width, height);
         level = new Level(64, 64);
         keyboard = new Keyboard();
+        player = new Player(width / 2, height / 2, level, Sprite.holeInGround, 50, keyboard);
+
         addKeyListener(keyboard);
     }
 
@@ -77,20 +83,9 @@ public class Game extends Canvas implements Runnable {
         stop();
     }
 
-    public void handleInput() {
-        if (keyboard.w)
-            yOffset--;
-        if (keyboard.a)
-            xOffset--;
-        if (keyboard.s)
-            yOffset++;
-        if (keyboard.d)
-            xOffset++;
-    }
-
     public void update() {
         keyboard.update();
-        handleInput();
+        player.update();
     }
 
     public void render() {
@@ -102,7 +97,7 @@ public class Game extends Canvas implements Runnable {
 
         // clear than render screen
         screen.clear();
-        level.render(xOffset, yOffset, screen);
+        level.render((int) player.pos.x, (int) player.pos.y, screen);
 
         for (int i = 0; i < pixels.length; i++) {
             pixels[i] = screen.pixels[i];

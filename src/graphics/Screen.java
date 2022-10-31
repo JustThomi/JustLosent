@@ -51,9 +51,6 @@ public class Screen {
                 if (xAbsolute < 0)
                     xAbsolute = 0;
 
-                if (yAbsolute < 0)
-                    yAbsolute = 0;
-
                 pixels[xAbsolute + yAbsolute * width] = tile.sprite.pixels[x + y * tile.sprite.SIZE];
             }
         }
