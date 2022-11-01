@@ -51,7 +51,27 @@ public class Screen {
                 if (xAbsolute < 0)
                     xAbsolute = 0;
 
-                pixels[xAbsolute + yAbsolute * width] = tile.sprite.pixels[x + y * tile.sprite.SIZE];
+                int pixelColor = tile.sprite.pixels[x + y * tile.sprite.SIZE];
+
+                if (pixelColor != 0xFFFF00FF)
+                    pixels[xAbsolute + yAbsolute * width] = pixelColor;
+            }
+        }
+    }
+
+    public void renderPlayer(int xPlayer, int yPlayer, Sprite sprite) {
+        xPlayer -= xOffset;
+        yPlayer -= yOffset;
+
+        for (int y = 0; y < sprite.SIZE; y++) {
+            int yAbsolute = y + yPlayer;
+
+            for (int x = 0; x < sprite.SIZE; x++) {
+                int xAbsolute = x + xPlayer;
+
+                int pixelColor = sprite.pixels[x + y * sprite.SIZE];
+                if (pixelColor != 0xFFFF00FF)
+                    pixels[xAbsolute + yAbsolute * width] = pixelColor;
             }
         }
     }

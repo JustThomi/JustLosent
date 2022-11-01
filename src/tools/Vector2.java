@@ -34,4 +34,10 @@ public class Vector2 {
         this.y += other.y;
     }
 
+    public boolean isNull() {
+        if (this.x == 0 && this.y == 0)
+            return true;
+        return false;
+    }
+
 }

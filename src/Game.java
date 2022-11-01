@@ -41,7 +41,7 @@ public class Game extends Canvas implements Runnable {
         screen = new Screen(width, height);
         level = new Level(64, 64);
         keyboard = new Keyboard();
-        player = new Player(width / 2, height / 2, level, Sprite.holeInGround, 50, keyboard);
+        player = new Player(0, 0, level, 1, keyboard);
 
         addKeyListener(keyboard);
     }
@@ -97,7 +97,14 @@ public class Game extends Canvas implements Runnable {
 
         // clear than render screen
         screen.clear();
-        level.render((int) player.pos.x, (int) player.pos.y, screen);
+
+        // center player
+        int xScroll = (int) player.pos.x - (width / 2) + Sprite.player.SIZE;
+        int yScroll = (int) player.pos.y - (height / 2) + Sprite.player.SIZE / 2;
+
+        // render stuff
+        level.render(xScroll, yScroll, screen);
+        player.render(screen);
 
         for (int i = 0; i < pixels.length; i++) {
             pixels[i] = screen.pixels[i];
