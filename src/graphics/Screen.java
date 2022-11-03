@@ -59,7 +59,7 @@ public class Screen {
         }
     }
 
-    public void renderPlayer(int xPlayer, int yPlayer, Sprite sprite) {
+    public void renderPlayer(int xPlayer, int yPlayer, Sprite sprite, boolean flipped) {
         xPlayer -= xOffset;
         yPlayer -= yOffset;
 
@@ -68,8 +68,12 @@ public class Screen {
 
             for (int x = 0; x < sprite.SIZE; x++) {
                 int xAbsolute = x + xPlayer;
+                int xFlipped = x; 
 
-                int pixelColor = sprite.pixels[x + y * sprite.SIZE];
+                if (flipped)
+                    xFlipped = (sprite.SIZE - 1) - x;
+
+                int pixelColor = sprite.pixels[xFlipped + y * sprite.SIZE];
                 if (pixelColor != 0xFFFF00FF)
                     pixels[xAbsolute + yAbsolute * width] = pixelColor;
             }

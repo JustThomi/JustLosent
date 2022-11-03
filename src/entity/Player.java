@@ -45,7 +45,15 @@ public class Player extends Mob {
     }
 
     public void render(Screen screen) {
-        screen.renderPlayer((int) this.pos.x, (int) this.pos.y, Sprite.player);
-        screen.renderPlayer((int) this.pos.x, (int) this.pos.y - 16, Sprite.playerHead);
+        boolean flip;
+        
+        // flip sprite if we move left
+        if(this.direction.x < 0)
+            flip = true;
+        else
+            flip = false;
+
+        screen.renderPlayer((int) this.pos.x, (int) this.pos.y, Sprite.player, flip);
+        screen.renderPlayer((int) this.pos.x, (int) this.pos.y - 16, Sprite.playerHead, flip); 
     }
 }
