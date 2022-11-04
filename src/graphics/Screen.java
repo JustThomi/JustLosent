@@ -68,7 +68,7 @@ public class Screen {
 
             for (int x = 0; x < sprite.SIZE; x++) {
                 int xAbsolute = x + xPlayer;
-                int xFlipped = x; 
+                int xFlipped = x;
 
                 if (flipped)
                     xFlipped = (sprite.SIZE - 1) - x;
