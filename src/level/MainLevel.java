@@ -6,8 +6,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import level.tile.Tile;
 
-public class MainLevel extends Level{
-    
+public class MainLevel extends Level {
+
     public MainLevel(String path) {
         super(path);
         loadLevel(path);
@@ -17,8 +17,8 @@ public class MainLevel extends Level{
     protected void loadLevel(String path) {
         try {
             BufferedImage image = ImageIO.read(getClass().getResource(path));
-            int width = image.getWidth();
-            int height = image.getHeight();
+            this.width = image.getWidth();
+            this.height = image.getHeight();
             // init pixel array with image size
             tiles = new int[width * height];
 
@@ -33,8 +33,8 @@ public class MainLevel extends Level{
     // Every tile reprezented by a color
     // We add FF as sufix for alpha value
     // 0xFF8800 (orange) - ground
-    // 0xFF4400 (orange) - side wall 
-    // 0xFF0000 (red)    - wall 
+    // 0xFF4400 (orange) - side wall
+    // 0xFF0000 (red) - wall
     // 0xFFFF00 (yellow) - cracked ground
     // to be continued
 
