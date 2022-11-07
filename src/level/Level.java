@@ -5,6 +5,7 @@ import level.tile.Tile;
 import java.util.Random;
 
 public class Level {
+    protected String path;
     protected int width, height;
     protected int[] tiles;
     private static final Random RNG = new Random();
@@ -18,7 +19,7 @@ public class Level {
     }
 
     public Level(String path) {
-        loadLevel(path);
+        this.path = path;
     }
 
     protected void generateLevel() {
@@ -29,7 +30,7 @@ public class Level {
         }
     }
 
-    private void loadLevel(String path) {
+    protected void loadLevel(String path) {
     }
 
     protected void time() {

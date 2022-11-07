@@ -13,6 +13,7 @@ import graphics.Screen;
 import graphics.Sprite;
 import input.Keyboard;
 import level.Level;
+import level.MainLevel;
 
 public class Game extends Canvas implements Runnable {
 
@@ -39,7 +40,7 @@ public class Game extends Canvas implements Runnable {
 
         frame = new JFrame();
         screen = new Screen(width, height);
-        level = new Level(64, 64);
+        level = new MainLevel("/assets/level.png");
         keyboard = new Keyboard();
         player = new Player(0, 0, level, 1, keyboard);
 

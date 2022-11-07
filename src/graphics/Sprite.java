@@ -13,6 +13,10 @@ public class Sprite {
     public static Sprite chippedGround = new Sprite(16, 3, 4, SpriteSheet.groundSheet);
     public static Sprite holeInGround = new Sprite(16, 1, 5, SpriteSheet.groundSheet);
 
+    // Wall sprites
+    public static Sprite wall = new Sprite(16, 1, 1, SpriteSheet.groundSheet);
+    public static Sprite sideWall = new Sprite(16, 3, 9, SpriteSheet.groundSheet);
+
     // Player sprites
     public static Sprite player = new Sprite(16, 8, 5, SpriteSheet.groundSheet);
     public static Sprite playerHead = new Sprite(16, 8, 4, SpriteSheet.groundSheet);
