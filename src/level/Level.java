@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Level {
     protected String path;
-    protected int width, height;
+    public int width, height;
     public int[] tiles;
     private static final Random RNG = new Random();
 

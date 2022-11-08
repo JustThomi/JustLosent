@@ -29,6 +29,11 @@ public class Player extends Mob {
                 new Sprite[] { Sprite.playerHead, Sprite.playerHead1 }, animationSpeed);
     }
 
+    public void setPosition(int x, int y){
+        this.pos.x = x * 16;
+        this.pos.y = y * 16;
+    }
+
     public void handleInput() {
         this.direction.x = 0;
         this.direction.y = 0;

@@ -44,6 +44,8 @@ public class Game extends Canvas implements Runnable {
         keyboard = new Keyboard();
         player = new Player(0, 0, level, 1, keyboard);
 
+        // Spawn in the center of the map
+        player.setPosition(level.width / 2, level.height / 2);
         addKeyListener(keyboard);
     }
 
