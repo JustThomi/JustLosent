@@ -30,10 +30,7 @@ public class MainLevel extends Level {
 
     }
 
-    // Every tile reprezented by a color
-    // We add FF as sufix for alpha value
     // 0xFF8800 (orange) - ground
-    // 0xFF4400 (orange) - side wall
     // 0xFF0000 (red) - wall
     // 0xFFFF00 (yellow) - cracked ground
     // to be continued
