@@ -14,7 +14,7 @@ public class Sprite {
     public static Sprite holeInGround = new Sprite(16, 1, 5, SpriteSheet.groundSheet);
 
     // Wall sprites
-    public static Sprite wall = new Sprite(16, 1, 1, SpriteSheet.groundSheet);
+    public static Sprite wall = new Sprite(16, 2, 1, SpriteSheet.groundSheet);
     public static Sprite sideWall = new Sprite(16, 1, 9, SpriteSheet.groundSheet);
 
     // Player sprites
