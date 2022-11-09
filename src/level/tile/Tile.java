@@ -6,28 +6,30 @@ import graphics.Sprite;
 public class Tile {
     protected int x, y;
     public Sprite sprite;
+    private boolean solid;
 
     // Ground tiles
-    public static Tile voidTile = new Tile(Sprite.voidSprite);
-    public static Tile ground = new Tile(Sprite.ground);
-    public static Tile crackedGround = new Tile(Sprite.crackedGround);
-    public static Tile chippedGround = new Tile(Sprite.chippedGround);
-    public static Tile holeInGround = new Tile(Sprite.holeInGround);
+    public static Tile voidTile = new Tile(Sprite.voidSprite, false);
+    public static Tile ground = new Tile(Sprite.ground, false);
+    public static Tile crackedGround = new Tile(Sprite.crackedGround, false);
+    public static Tile chippedGround = new Tile(Sprite.chippedGround, false);
+    public static Tile holeInGround = new Tile(Sprite.holeInGround, false);
 
     // wall tiles
-    public static Tile wall = new Tile(Sprite.wall);
-    public static Tile sideWall = new Tile(Sprite.sideWall);
+    public static Tile wall = new Tile(Sprite.wall, true);
+    public static Tile sideWall = new Tile(Sprite.sideWall, true);
 
 
-    public Tile(Sprite sprite) {
+    public Tile(Sprite sprite, boolean solid) {
         this.sprite = sprite;
+        this.solid = solid;
     }
 
     public void render(int x, int y, Screen screen) {
         screen.renderTile(x << 4, y << 4, this);
     }
 
-    public boolean solind() {
-        return false;
+    public boolean isSolid() {
+        return solid;
     }
 }
