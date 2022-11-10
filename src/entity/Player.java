@@ -29,7 +29,7 @@ public class Player extends Mob {
                 new Sprite[] { Sprite.playerHead, Sprite.playerHead1 }, animationSpeed);
     }
 
-    public void setPosition(int x, int y){
+    public void setPosition(int x, int y) {
         this.pos.x = x * 16;
         this.pos.y = y * 16;
     }
@@ -48,15 +48,30 @@ public class Player extends Mob {
             this.direction.x++;
     }
 
+    public boolean isColliding() {
+        boolean colliding = false;
+
+        for (int i = 0; i < 4; i++) {
+            int xColl = ((this.pos.x + this.direction.x) + i % 2 + 5) / 16;
+            int yColl = ((this.pos.y + this.direction.y) + i / 2 + 13) / 16;
+
+            if (level.getTile(xColl, yColl).isSolid()) {
+                colliding = true;
+            }
+        }
+        return colliding;
+    }
+
     @Override
     public void update() {
         handleInput();
-        move();
+        if (!isColliding()) {
+            move();
+        }
     }
 
     @Override
     public void move() {
-        // this.direction.normalize();
         this.direction.multiply(speed);
         this.pos.add(direction);
     }

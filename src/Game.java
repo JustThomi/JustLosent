@@ -12,6 +12,7 @@ import java.awt.image.DataBufferInt;
 import graphics.Screen;
 import graphics.Sprite;
 import input.Keyboard;
+import input.Mouse;
 import level.Level;
 import level.MainLevel;
 
@@ -47,6 +48,10 @@ public class Game extends Canvas implements Runnable {
         // Spawn in the center of the map
         player.setPosition(level.width / 2, level.height / 2);
         addKeyListener(keyboard);
+
+        Mouse mouse = new Mouse();
+        addMouseListener(mouse);
+        addMouseMotionListener(mouse);
     }
 
     public synchronized void start() {

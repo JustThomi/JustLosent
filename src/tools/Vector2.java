@@ -1,15 +1,15 @@
 package tools;
 
 public class Vector2 {
-    public float x;
-    public float y;
+    public int x;
+    public int y;
 
     public Vector2() {
-        this.x = 0.0f;
-        this.y = 0.0f;
+        this.x = 0;
+        this.y = 0;
     }
 
-    public Vector2(float x, float y) {
+    public Vector2(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -19,7 +19,7 @@ public class Vector2 {
     }
 
     public void normalize() {
-        float len = (float) Math.sqrt((this.x * this.x) + (this.y * this.y));
+        int len = (int) Math.sqrt((this.x * this.x) + (this.y * this.y));
         this.x /= len;
         this.y /= len;
     }
