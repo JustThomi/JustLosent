@@ -41,6 +41,12 @@ public class Mouse implements MouseInputListener, MenuDragMouseListener {
     }
 
     @Override
+    public void mouseDragged(MouseEvent e) {
+        x = e.getX();
+        y = e.getY();
+    }
+
+    @Override
     public void mouseClicked(MouseEvent e) {
     }
 
@@ -50,10 +56,6 @@ public class Mouse implements MouseInputListener, MenuDragMouseListener {
 
     @Override
     public void mouseExited(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseDragged(MouseEvent e) {
     }
 
     @Override

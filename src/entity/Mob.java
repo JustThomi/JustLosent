@@ -1,5 +1,7 @@
 package entity;
 
+import java.util.ArrayList;
+
 import level.Level;
 import tools.Vector2;
 
@@ -7,7 +9,11 @@ public class Mob extends Entity {
     protected Vector2 direction;
     protected boolean isMoving = false;
 
-    public Mob(int x, int y, Level level) {
+    public static ArrayList<Projectile> shots = new ArrayList<Projectile>();
+
+    public Mob(
+            int x,
+            int y, Level level) {
         super(x, y, level);
     }
 

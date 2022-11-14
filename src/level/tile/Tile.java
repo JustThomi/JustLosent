@@ -19,6 +19,9 @@ public class Tile {
     public static Tile wall = new Tile(Sprite.wall, true);
     public static Tile sideWall = new Tile(Sprite.sideWall, true);
 
+    // Entity tiles
+    public static Tile bullet = new Tile(Sprite.bullet, false);
+
     public Tile(Sprite sprite, boolean solid) {
         this.sprite = sprite;
         this.solid = solid;

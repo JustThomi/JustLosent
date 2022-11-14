@@ -1,17 +1,21 @@
 package tools;
 
 public class Vector2 {
-    public int x;
-    public int y;
+    public double x;
+    public double y;
 
     public Vector2() {
         this.x = 0;
         this.y = 0;
     }
 
-    public Vector2(int x, int y) {
+    public Vector2(double x, double y) {
         this.x = x;
         this.y = y;
+    }
+
+    public void print() {
+        System.out.print("X: " + this.x + " Y: " + this.y + "\n");
     }
 
     public boolean equals(Vector2 other) {
@@ -19,12 +23,12 @@ public class Vector2 {
     }
 
     public void normalize() {
-        int len = (int) Math.sqrt((this.x * this.x) + (this.y * this.y));
+        double len = (double) Math.sqrt((this.x * this.x) + (this.y * this.y));
         this.x /= len;
         this.y /= len;
     }
 
-    public void multiply(int nr) {
+    public void multiply(double nr) {
         this.x *= nr;
         this.y *= nr;
     }

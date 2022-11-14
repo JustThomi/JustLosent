@@ -30,6 +30,9 @@ public class Sprite {
     public static Sprite player3 = new Sprite(16, 11, 5, SpriteSheet.groundSheet);
     public static Sprite playerHead3 = new Sprite(16, 11, 4, SpriteSheet.groundSheet);
 
+    // Entity sprites
+    public static Sprite bullet = new Sprite(16, 18, 20, SpriteSheet.groundSheet);
+
     public Sprite(
             int size,
             int x,

@@ -24,6 +24,14 @@ public class Screen {
         }
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
     public void clear() {
         for (int i = 0; i < width * height; i++) {
             pixels[i] = 0;

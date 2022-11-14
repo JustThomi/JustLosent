@@ -4,6 +4,7 @@ import graphics.Animator;
 import graphics.Screen;
 import graphics.Sprite;
 import input.Keyboard;
+import input.Mouse;
 import level.Level;
 import tools.Vector2;
 
@@ -34,6 +35,17 @@ public class Player extends Mob {
         this.pos.y = y * 16;
     }
 
+    public void shoot(int x, int y) {
+        // get bullet direction
+        // Vector2 dir = new Vector2();
+        double dir = Math.atan2(y - (int) this.pos.y, x - (int) this.pos.x);
+        // dir.normalize();
+
+        Projectile p = new Projectile((int) this.pos.x, (int) this.pos.y, level, (int) dir);
+        shots.add(p);
+        level.addEntity(p);
+    }
+
     public void handleInput() {
         this.direction.x = 0;
         this.direction.y = 0;
@@ -46,14 +58,18 @@ public class Player extends Mob {
             this.direction.y++;
         if (input.d)
             this.direction.x++;
+
+        if (Mouse.getButton() == 1) {
+            shoot(Mouse.getX(), Mouse.getY());
+        }
     }
 
     public boolean isColliding() {
         boolean colliding = false;
 
         for (int i = 0; i < 4; i++) {
-            int xColl = ((this.pos.x + this.direction.x) + i % 2 + 5) / 16;
-            int yColl = ((this.pos.y + this.direction.y) + i / 2 + 13) / 16;
+            int xColl = (int) ((this.pos.x + this.direction.x) + i % 2 + 5) / 16;
+            int yColl = (int) ((this.pos.y + this.direction.y) + i / 2 + 13) / 16;
 
             if (level.getTile(xColl, yColl).isSolid()) {
                 colliding = true;

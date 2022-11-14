@@ -54,6 +54,14 @@ public class Game extends Canvas implements Runnable {
         addMouseMotionListener(mouse);
     }
 
+    public static int getWindowWidth() {
+        return width * scale;
+    }
+
+    public static int getWindowHeight() {
+        return height * scale;
+    }
+
     public synchronized void start() {
         running = true;
         thread = new Thread(this, "Display");
@@ -94,6 +102,7 @@ public class Game extends Canvas implements Runnable {
     public void update() {
         keyboard.update();
         player.update();
+        level.update();
     }
 
     public void render() {

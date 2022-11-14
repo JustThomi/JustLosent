@@ -2,7 +2,11 @@ package level;
 
 import graphics.Screen;
 import level.tile.Tile;
+
+import java.util.ArrayList;
 import java.util.Random;
+
+import entity.Entity;
 
 public class Level {
     protected String path;
@@ -10,7 +14,11 @@ public class Level {
     public int[] tiles;
     private static final Random RNG = new Random();
 
-    public Level(int width, int height) {
+    protected ArrayList<Entity> entities = new ArrayList<Entity>();
+
+    public Level(
+            int width,
+            int height) {
         this.width = width;
         this.height = height;
         this.tiles = new int[width * height];
@@ -36,7 +44,14 @@ public class Level {
     protected void time() {
     }
 
+    public void addEntity(Entity e) {
+        entities.add(e);
+    }
+
     public void update() {
+        for (Entity entity : entities) {
+            entity.update();
+        }
     }
 
     public Tile getTile(int x, int y) {
@@ -67,6 +82,10 @@ public class Level {
             for (int x = x0; x < x1; x++) {
                 getTile(x, y).render(x, y, screen);
             }
+        }
+
+        for (Entity entity : entities) {
+            entity.render(screen);
         }
     }
 
