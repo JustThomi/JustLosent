@@ -8,12 +8,12 @@ import level.tile.Tile;
 
 public class Projectile extends Entity {
 
-    protected int direction;
+    protected double direction;
     protected Sprite sprite;
     protected int speed;
     protected int damage;
 
-    public Projectile(int x, int y, Level level, int dir) {
+    public Projectile(int x, int y, Level level, double dir) {
         super(x, y, level);
         this.direction = dir;
         this.speed = 1;
@@ -22,9 +22,8 @@ public class Projectile extends Entity {
     }
 
     public void move() {
-        this.direction *= speed;
-        this.pos.x += direction;
-        this.pos.y += direction;
+        this.pos.x += speed * Math.cos(direction);
+        this.pos.y += speed * Math.sin(direction);
     }
 
     @Override

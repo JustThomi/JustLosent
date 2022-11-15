@@ -7,6 +7,7 @@ import input.Keyboard;
 import input.Mouse;
 import level.Level;
 import tools.Vector2;
+import main.Game;
 
 public class Player extends Mob {
     protected int speed;
@@ -35,13 +36,8 @@ public class Player extends Mob {
         this.pos.y = y * 16;
     }
 
-    public void shoot(int x, int y) {
-        // get bullet direction
-        // Vector2 dir = new Vector2();
-        double dir = Math.atan2(y - (int) this.pos.y, x - (int) this.pos.x);
-        // dir.normalize();
-
-        Projectile p = new Projectile((int) this.pos.x, (int) this.pos.y, level, (int) dir);
+    public void shoot(int x, int y, double dir) {
+        Projectile p = new Projectile((int) this.pos.x, (int) this.pos.y, level, dir);
         shots.add(p);
         level.addEntity(p);
     }
@@ -60,7 +56,8 @@ public class Player extends Mob {
             this.direction.x++;
 
         if (Mouse.getButton() == 1) {
-            shoot(Mouse.getX(), Mouse.getY());
+            double dir = Math.atan2(Mouse.getY() - Game.getWindowHeight() / 2, Mouse.getX() - Game.getWindowWidth() / 2);
+            shoot(Mouse.getX() - Game.getWindowWidth() / 2, Mouse.getY() - Game.getWindowHeight() / 2, dir);
         }
     }
 
