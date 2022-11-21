@@ -7,21 +7,25 @@ import input.Keyboard;
 import input.Mouse;
 import level.Level;
 import tools.Vector2;
-import main.Game;
+import spells.*;
 
 public class Player extends Mob {
     protected int speed;
+    protected int health;
     protected Keyboard input;
 
     private int animationSpeed;
     protected Animator animatorBody;
     protected Animator animatorHead;
 
+    protected Spell attackSpell = new Skullrain(this);
+
     public Player(int x, int y, Level level, int speed, Keyboard keyboard) {
         super(x, y, level);
         this.input = keyboard;
         this.speed = speed;
         this.direction = new Vector2();
+        this.health = 100;
 
         // hard coded so animation speed can match walking speed
         this.animationSpeed = 500;
@@ -34,12 +38,6 @@ public class Player extends Mob {
     public void setPosition(int x, int y) {
         this.pos.x = x * 16;
         this.pos.y = y * 16;
-    }
-
-    public void shoot(int x, int y, double dir) {
-        Projectile p = new Projectile((int) this.pos.x, (int) this.pos.y, level, dir);
-        shots.add(p);
-        level.addEntity(p);
     }
 
     public void handleInput() {
@@ -56,8 +54,7 @@ public class Player extends Mob {
             this.direction.x++;
 
         if (Mouse.getButton() == 1) {
-            double dir = Math.atan2(Mouse.getY() - Game.getWindowHeight() / 2, Mouse.getX() - Game.getWindowWidth() / 2);
-            shoot(Mouse.getX() - Game.getWindowWidth() / 2, Mouse.getY() - Game.getWindowHeight() / 2, dir);
+            attackSpell.use();
         }
     }
 

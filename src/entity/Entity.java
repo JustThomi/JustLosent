@@ -8,7 +8,7 @@ import tools.Vector2;
 public class Entity {
     public Vector2 pos;
     protected boolean removed = false;
-    protected Level level;
+    public Level level;
     protected final Random RNG = new Random();
 
     public Entity(int x, int y, Level level) {
