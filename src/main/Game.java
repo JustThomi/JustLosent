@@ -5,7 +5,9 @@ import javax.swing.JFrame;
 import entity.Player;
 
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -132,7 +134,9 @@ public class Game extends Canvas implements Runnable {
         Graphics g = bs.getDrawGraphics();
         // draw image
         g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("Monocraft", 0, 32));
+        g.drawString("HP: " + player.getHealth(), 20, 50);
         g.dispose();
         bs.show();
     }

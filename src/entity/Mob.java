@@ -11,7 +11,7 @@ public class Mob extends Entity {
 
     protected int health;
 
-    public static ArrayList<Projectile> shots = new ArrayList<Projectile>();
+    public ArrayList<Projectile> shots = new ArrayList<Projectile>();
 
     public Mob(int x, int y, Level level) {
         super(x, y, level);

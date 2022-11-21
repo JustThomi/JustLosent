@@ -17,8 +17,8 @@ public class Player extends Mob {
     protected Animator animatorBody;
     protected Animator animatorHead;
 
-    protected Spell attackSpell = new Skullrain(this);
-    protected Spell healSpell = new Heal(this);
+    protected Spell attackSpell = new Skullrain(this, 20);
+    protected Spell healSpell = new Heal(this, 100);
 
     public Player(int x, int y, Level level, int speed, Keyboard keyboard) {
         super(x, y, level);
@@ -44,6 +44,7 @@ public class Player extends Mob {
         this.direction.x = 0;
         this.direction.y = 0;
 
+        // movement
         if (input.w)
             this.direction.y--;
         if (input.a)
@@ -53,6 +54,7 @@ public class Player extends Mob {
         if (input.d)
             this.direction.x++;
 
+        // actions
         if (Mouse.getButton() == 1) {
             attackSpell.use();
         }
@@ -82,8 +84,6 @@ public class Player extends Mob {
         if (!isColliding()) {
             move();
         }
-
-        System.out.println(this.health);
     }
 
     @Override

@@ -3,17 +3,22 @@ package spells;
 import entity.Mob;
 
 public class Heal extends Spell {
+    protected int power;
 
-    Mob mob;
-    protected int power = 10;
-
-    public Heal(Mob mob) {
-        super(mob);
-        this.mob = mob;
+    public Heal(Mob mob, int cdValue) {
+        super(mob, cdValue);
+        this.power = 10;
     }
 
     @Override
     public void use() {
-        this.mob.setHealth(mob.getHealth() + power);
+        if (!isOnCooldown()) {
+            this.caster.setHealth(caster.getHealth() + power);
+
+            // reste timer
+            this.timer = this.cooldownValue;
+            this.onCooldown = true;
+        }
+        this.cooldown();
     }
 }

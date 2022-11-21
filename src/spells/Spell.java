@@ -4,17 +4,31 @@ import entity.Mob;
 
 public class Spell {
 
-    Mob caster;
+    protected Mob caster;
+    protected boolean onCooldown;
+    protected int cooldownValue;
+    protected int timer;
 
-    public Spell(Mob caster) {
+    public Spell(Mob caster, int cdValue) {
         this.caster = caster;
+        this.cooldownValue = cdValue;
+        this.onCooldown = false;
     }
 
     public void use() {
+    }
 
+    public void cooldown() {
+        if (isOnCooldown()) {
+            timer--;
+
+            if (timer <= 0) {
+                onCooldown = false;
+            }
+        }
     }
 
     public boolean isOnCooldown() {
-        return false;
+        return onCooldown;
     }
 }
