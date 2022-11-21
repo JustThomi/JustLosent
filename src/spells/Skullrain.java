@@ -1,15 +1,15 @@
 package spells;
 
+import entity.Mob;
 import entity.Player;
 import entity.Projectile;
 import input.Mouse;
 import main.Game;
 
 public class Skullrain extends Spell {
-    protected Player player;
 
-    public Skullrain(Player player) {
-        this.player = player;
+    public Skullrain(Mob caster) {
+        super(caster);
     }
 
     @Override
@@ -20,8 +20,8 @@ public class Skullrain extends Spell {
         double dir = Math.atan2(dy, dx);
 
         // create projectile
-        Projectile p = new Projectile((int) player.pos.x, (int) player.pos.y, player.level, dir);
+        Projectile p = new Projectile((int) caster.pos.x, (int) caster.pos.y, caster.level, dir);
         Player.shots.add(p);
-        player.level.addEntity(p);
+        caster.level.addEntity(p);
     }
 }

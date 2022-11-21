@@ -9,23 +9,26 @@ public class Mob extends Entity {
     protected Vector2 direction;
     protected boolean isMoving = false;
 
+    protected int health;
+
     public static ArrayList<Projectile> shots = new ArrayList<Projectile>();
 
-    public Mob(
-            int x,
-            int y, Level level) {
+    public Mob(int x, int y, Level level) {
         super(x, y, level);
+    }
+
+    public void setHealth(int nr) {
+        this.health = nr;
+    }
+
+    public int getHealth() {
+        return this.health;
     }
 
     public void update() {
     }
 
     public void move() {
-    }
-
-    public boolean collision() {
-        // collision code later
-        return false;
     }
 
     public void render() {

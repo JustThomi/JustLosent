@@ -11,7 +11,6 @@ import spells.*;
 
 public class Player extends Mob {
     protected int speed;
-    protected int health;
     protected Keyboard input;
 
     private int animationSpeed;
@@ -19,6 +18,7 @@ public class Player extends Mob {
     protected Animator animatorHead;
 
     protected Spell attackSpell = new Skullrain(this);
+    protected Spell healSpell = new Heal(this);
 
     public Player(int x, int y, Level level, int speed, Keyboard keyboard) {
         super(x, y, level);
@@ -56,6 +56,10 @@ public class Player extends Mob {
         if (Mouse.getButton() == 1) {
             attackSpell.use();
         }
+
+        if (Mouse.getButton() == 3) {
+            healSpell.use();
+        }
     }
 
     public boolean isColliding() {
@@ -78,6 +82,8 @@ public class Player extends Mob {
         if (!isColliding()) {
             move();
         }
+
+        System.out.println(this.health);
     }
 
     @Override

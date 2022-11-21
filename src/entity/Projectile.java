@@ -16,7 +16,7 @@ public class Projectile extends Entity {
     public Projectile(int x, int y, Level level, double dir) {
         super(x, y, level);
         this.direction = dir;
-        this.speed = 1;
+        this.speed = 2;
         this.damage = 5;
         // this.sprite = Sprite.bullet;
     }
