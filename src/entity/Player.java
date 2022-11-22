@@ -17,8 +17,9 @@ public class Player extends Mob {
     protected Animator animatorBody;
     protected Animator animatorHead;
 
-    protected Spell attackSpell = new Skullrain(this, 20);
-    protected Spell healSpell = new Heal(this, 100);
+    protected Spell attackSpell = new Skullrain(this, 30);
+    protected Spell specialSpell = new Smash(this, 100);
+    protected Spell healSpell = new Heal(this, 400);
 
     public Player(int x, int y, Level level, int speed, Keyboard keyboard) {
         super(x, y, level);
@@ -59,6 +60,10 @@ public class Player extends Mob {
             attackSpell.use();
         }
 
+        if (Mouse.getButton() == 2) {
+            specialSpell.use();
+        }
+
         if (Mouse.getButton() == 3) {
             healSpell.use();
         }
@@ -84,6 +89,8 @@ public class Player extends Mob {
         if (!isColliding()) {
             move();
         }
+        // remove when lifespan is over
+        shots.removeIf(e -> (e.isRemoved()));
     }
 
     @Override

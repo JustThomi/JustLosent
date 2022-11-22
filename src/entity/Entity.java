@@ -25,7 +25,6 @@ public class Entity {
     }
 
     public void remove() {
-        // rm from level code later
         this.removed = true;
     }
 

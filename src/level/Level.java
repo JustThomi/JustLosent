@@ -52,6 +52,8 @@ public class Level {
         for (Entity entity : entities) {
             entity.update();
         }
+        // remove entities after over
+        entities.removeIf(e -> (e.isRemoved()));
     }
 
     public Tile getTile(int x, int y) {
