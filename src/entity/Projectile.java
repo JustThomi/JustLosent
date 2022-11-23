@@ -27,14 +27,30 @@ public class Projectile extends Entity {
         // this.sprite = Sprite.bullet;
     }
 
-    public void move() {
-        this.pos.x += speed * Math.cos(direction);
-        this.pos.y += speed * Math.sin(direction);
+    public boolean isColliding() {
+        boolean colliding = false;
+
+        for (int i = 0; i < 4; i++) {
+            int xColl = (int) ((this.pos.x) + i % 2 + 5) / 16;
+            int yColl = (int) ((this.pos.y) + i / 2 + 13) / 16;
+
+            if (level.getTile(xColl, yColl).isSolid()) {
+                colliding = true;
+            }
+        }
+        return colliding;
     }
 
-    public void timer(){
+    public void move() {
+        if (!this.isColliding()) {
+            this.pos.x += speed * Math.cos(direction);
+            this.pos.y += speed * Math.sin(direction);
+        }
+    }
+
+    public void timer() {
         lifespan--;
-        if (lifespan <= 0){
+        if (lifespan <= 0) {
             this.remove();
         }
     }
