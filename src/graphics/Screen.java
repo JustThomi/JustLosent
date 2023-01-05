@@ -87,4 +87,28 @@ public class Screen {
             }
         }
     }
+
+    public void renderSprite(int xSprite, int ySprite, Sprite sprite) {
+        xSprite -= xOffset;
+        ySprite -= yOffset;
+
+        for (int y = 0; y < sprite.SIZE; y++) {
+            int yAbsolute = y + ySprite;
+
+            for (int x = 0; x < sprite.SIZE; x++) {
+                int xAbsolute = x + xSprite;
+
+                if (xAbsolute < -sprite.SIZE || xAbsolute >= width || yAbsolute < 0 || yAbsolute >= height)
+                    break;
+
+                if (xAbsolute < 0)
+                    xAbsolute = 0;
+
+                int pixelColor = sprite.pixels[x + y * sprite.SIZE];
+
+                if (pixelColor != 0xFFFF00FF)
+                    pixels[xAbsolute + yAbsolute * width] = pixelColor;
+            }
+        }
+    }
 }

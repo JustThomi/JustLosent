@@ -33,6 +33,9 @@ public class Sprite {
     // Entity sprites
     public static Sprite bullet = new Sprite(16, 18, 20, SpriteSheet.groundSheet);
 
+    // Particles
+    public static Sprite basicParticle = new Sprite(5, 0xAAAAAA);
+
     public Sprite(
             int size,
             int x,
@@ -43,6 +46,15 @@ public class Sprite {
         this.y = y * size;
         this.sheet = sheet;
         load();
+    }
+
+    public Sprite(int size, int color) {
+        SIZE = size;
+        pixels = new int[size * size];
+
+        for (int i = 0; i < size * size; i++) {
+            pixels[i] = color;
+        }
     }
 
     private void load() {
