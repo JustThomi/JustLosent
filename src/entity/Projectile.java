@@ -1,6 +1,5 @@
 package entity;
 
-import graphics.Particle;
 import graphics.Screen;
 import graphics.Sprite;
 import level.Level;
@@ -48,9 +47,6 @@ public class Projectile extends Entity {
             this.pos.y += speed * Math.sin(direction);
         } else {
             this.removed = true;
-
-            Particle p = new Particle((int) pos.x, (int) pos.y, level, 10, 30);
-            level.addEntity(p);
         }
     }
 
