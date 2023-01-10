@@ -5,6 +5,7 @@ import graphics.Sprite;
 import level.Level;
 import level.tile.Tile;
 // import tools.Vector2;
+import main.Game;
 
 public class Projectile extends Entity {
 
@@ -39,6 +40,21 @@ public class Projectile extends Entity {
             }
         }
         return colliding;
+    }
+
+    public boolean mobHit() {
+        boolean hit = false;
+
+        for (int i = 0; i < 4; i++) {
+            int xColl = (int) ((this.pos.x) + i % 2 + 5) / 16;
+            int yColl = (int) ((this.pos.y) + i / 2 + 13) / 16;
+
+            if (xColl >= Game.player.pos.x - 16 || xColl <= Game.player.pos.x + 16 && yColl >= Game.player.pos.y - 16
+                    || yColl <= Game.player.pos.y + 16) {
+                hit = true;
+            }
+        }
+        return hit;
     }
 
     public void move() {

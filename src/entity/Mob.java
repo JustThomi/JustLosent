@@ -24,13 +24,4 @@ public class Mob extends Entity {
     public int getHealth() {
         return this.health;
     }
-
-    public void update() {
-    }
-
-    public void move() {
-    }
-
-    public void render() {
-    }
 }

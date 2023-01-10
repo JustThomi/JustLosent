@@ -93,7 +93,6 @@ public class Player extends Mob {
         shots.removeIf(e -> (e.isRemoved()));
     }
 
-    @Override
     public void move() {
         this.direction.multiply(speed);
         this.pos.add(direction);

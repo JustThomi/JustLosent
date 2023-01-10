@@ -3,6 +3,7 @@ package main;
 import javax.swing.JFrame;
 
 import entity.Player;
+import entity.Spawner;
 
 import java.awt.Canvas;
 import java.awt.Color;
@@ -35,7 +36,9 @@ public class Game extends Canvas implements Runnable {
     private int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
 
     private Keyboard keyboard;
-    private Player player;
+    public static Player player;
+
+    private Spawner spawner;
 
     public static Level level;
 
@@ -48,6 +51,7 @@ public class Game extends Canvas implements Runnable {
         level = new MainLevel("/assets/level.png");
         keyboard = new Keyboard();
         player = new Player(0, 0, level, 1, keyboard);
+        spawner = new Spawner(level);
 
         // Spawn in the center of the map
         player.setPosition(level.width / 2, level.height / 2);
@@ -56,6 +60,9 @@ public class Game extends Canvas implements Runnable {
         Mouse mouse = new Mouse();
         addMouseListener(mouse);
         addMouseMotionListener(mouse);
+
+        // spawn test mob
+        spawner.spawnMob();
     }
 
     public static int getWindowWidth() {
@@ -107,6 +114,7 @@ public class Game extends Canvas implements Runnable {
         keyboard.update();
         player.update();
         level.update();
+        spawner.update();
     }
 
     public void render() {
@@ -126,6 +134,7 @@ public class Game extends Canvas implements Runnable {
         // render stuff
         level.render(xScroll, yScroll, screen);
         player.render(screen);
+        spawner.render(screen);
 
         for (int i = 0; i < pixels.length; i++) {
             pixels[i] = screen.pixels[i];

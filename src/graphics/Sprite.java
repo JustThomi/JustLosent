@@ -33,8 +33,8 @@ public class Sprite {
     // Entity sprites
     public static Sprite bullet = new Sprite(16, 18, 20, SpriteSheet.groundSheet);
 
-    // Particles
-    public static Sprite basicParticle = new Sprite(5, 0xAAAAAA);
+    // Mobs
+    public static Sprite shootingMob = new Sprite(16, 27, 7, SpriteSheet.groundSheet);
 
     public Sprite(
             int size,
