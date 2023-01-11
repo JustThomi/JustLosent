@@ -32,6 +32,7 @@ public class Sprite {
 
     // Entity sprites
     public static Sprite bullet = new Sprite(16, 18, 20, SpriteSheet.groundSheet);
+    public static Sprite knife = new Sprite(16, 18, 1, SpriteSheet.groundSheet);
 
     // Mobs
     public static Sprite shootingMob = new Sprite(16, 27, 7, SpriteSheet.groundSheet);

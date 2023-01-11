@@ -12,6 +12,7 @@ import spells.*;
 public class Player extends Mob {
     protected int speed;
     protected Keyboard input;
+    protected int score;
 
     private int animationSpeed;
     protected Animator animatorBody;
@@ -27,6 +28,7 @@ public class Player extends Mob {
         this.speed = speed;
         this.direction = new Vector2();
         this.health = 100;
+        this.score = 0;
 
         // hard coded so animation speed can match walking speed
         this.animationSpeed = 500;
@@ -41,7 +43,15 @@ public class Player extends Mob {
         this.pos.y = y * 16;
     }
 
-    public void die(){
+    public void addScore(int points) {
+        this.score += points;
+    }
+
+    public int getScore() {
+        return this.score;
+    }
+
+    public void die() {
         setHealth(0);
     }
 
@@ -94,7 +104,7 @@ public class Player extends Mob {
             move();
         }
 
-        if(this.health <= 0){
+        if (this.health <= 0) {
             die();
         }
 

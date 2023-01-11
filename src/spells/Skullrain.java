@@ -1,7 +1,7 @@
 package spells;
 
 import entity.Mob;
-import entity.Projectile;
+import entity.PlayerProjectile;
 import input.Mouse;
 import main.Game;
 
@@ -20,7 +20,7 @@ public class Skullrain extends Spell {
             double dir = Math.atan2(dy, dx);
 
             // create projectile
-            Projectile p = new Projectile((int) caster.pos.x, (int) caster.pos.y, caster.level, dir);
+            PlayerProjectile p = new PlayerProjectile((int) caster.pos.x, (int) caster.pos.y, caster.level, dir);
             caster.shots.add(p);
             caster.level.addEntity(p);
 

@@ -43,7 +43,7 @@ public class Game extends Canvas implements Runnable {
     public static Level level;
     protected Menu menu;
 
-    protected enum STATES{
+    protected enum STATES {
         START,
         RUNNING,
         OVER,
@@ -73,9 +73,6 @@ public class Game extends Canvas implements Runnable {
         addMouseMotionListener(mouse);
 
         menu = new Menu(mouse);
-
-        // spawn test mob
-        spawner.spawnMob();
     }
 
     public static int getWindowWidth() {
@@ -118,7 +115,7 @@ public class Game extends Canvas implements Runnable {
                 update();
                 delta--;
             }
-            if (currentState == STATES.RUNNING){
+            if (currentState == STATES.RUNNING) {
                 render();
             }
         }
@@ -126,12 +123,13 @@ public class Game extends Canvas implements Runnable {
     }
 
     public void update() {
-        switch(currentState){
+        switch (currentState) {
             case START:
                 menu.update();
+                menu.render(screen);
                 break;
 
-            case RUNNING :
+            case RUNNING:
                 keyboard.update();
                 player.update();
                 level.update();
@@ -172,9 +170,13 @@ public class Game extends Canvas implements Runnable {
         Graphics g = bs.getDrawGraphics();
         // draw image
         g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+        // set color and fonts
         g.setColor(Color.WHITE);
         g.setFont(new Font("Monocraft", 0, 32));
+        // draw stings
         g.drawString("HP: " + player.getHealth(), 20, 50);
+        g.drawString("SCORE: " + player.getScore(), 20, 100);
+
         g.dispose();
         bs.show();
     }

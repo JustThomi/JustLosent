@@ -10,16 +10,27 @@ import spells.ThrowKnife;
 public class ShootingEnemy extends Mob {
     protected Sprite sprite;
     protected Spell attackSpell;
+    protected int points;
 
     public ShootingEnemy(int x, int y, Level level) {
         super(x, y, level);
-        this.health = 100;
         this.sprite = Sprite.shootingMob;
         this.attackSpell = new ThrowKnife(this, 100, Game.player);
+        this.health = 100;
+        this.points = 10;
+    }
+
+    public void die() {
+        removed = true;
+        Game.player.addScore(points);
     }
 
     public void update() {
         attackSpell.use();
+
+        if (health <= 0) {
+            die();
+        }
     }
 
     public void render(Screen screen) {

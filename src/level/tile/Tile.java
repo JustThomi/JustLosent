@@ -21,6 +21,7 @@ public class Tile {
 
     // Entity tiles
     public static Tile bullet = new Tile(Sprite.bullet, false);
+    public static Tile knife = new Tile(Sprite.knife, false);
 
     public Tile(Sprite sprite, boolean solid) {
         this.sprite = sprite;

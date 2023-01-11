@@ -1,24 +1,24 @@
 package spells;
 
 import entity.Mob;
-import entity.Projectile;
+import entity.PlayerProjectile;
 
-public class Smash extends Spell{
-    
-    public Smash(Mob caster, int cdValue){
+public class Smash extends Spell {
+
+    public Smash(Mob caster, int cdValue) {
         super(caster, cdValue);
     }
 
-    public void spawnProjectile(double dir){
-        Projectile p = new Projectile((int) caster.pos.x, (int) caster.pos.y, caster.level, dir);
+    public void spawnProjectile(double dir) {
+        PlayerProjectile p = new PlayerProjectile((int) caster.pos.x, (int) caster.pos.y, caster.level, dir);
         caster.shots.add(p);
         caster.level.addEntity(p);
     }
 
     @Override
-    public void use(){
+    public void use() {
         // testing some ideas
-        if(!isOnCooldown()){
+        if (!isOnCooldown()) {
             spawnProjectile(0);
             spawnProjectile(45);
             spawnProjectile(90);

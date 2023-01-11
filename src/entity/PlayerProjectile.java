@@ -1,13 +1,12 @@
 package entity;
 
+import level.Level;
+
 import graphics.Screen;
 import graphics.Sprite;
-import level.Level;
 import level.tile.Tile;
-import main.Game;
 
-public class Projectile extends Entity {
-
+public class PlayerProjectile extends Entity {
     protected Sprite sprite;
     // stats
     protected double direction;
@@ -17,13 +16,14 @@ public class Projectile extends Entity {
     // range/lifespan of bullet
     protected int lifespan;
 
-    public Projectile(int x, int y, Level level, double dir) {
+    public PlayerProjectile(int x, int y, Level level, double dir) {
         super(x, y, level);
         this.direction = dir;
-        this.speed = 1;
+        this.speed = 2;
         this.damage = 5;
         this.lifespan = 100;
         this.removed = false;
+        // this.sprite = Sprite.bullet;
     }
 
     public boolean isColliding() {
@@ -40,36 +40,36 @@ public class Projectile extends Entity {
         return colliding;
     }
 
-    public boolean playerHit() {
+    public boolean mobHit() {
         boolean hit = false;
 
         for (int i = 0; i < 4; i++) {
             int xColl = (int) ((this.pos.x) + i % 2 + 5) / 16;
             int yColl = (int) ((this.pos.y) + i / 2 + 13) / 16;
 
-            if (xColl * 16 > Game.player.pos.x - 16 && xColl * 16 < Game.player.pos.x + 16
-                    && yColl * 16 > Game.player.pos.y - 16
-                    && yColl * 16 < Game.player.pos.y + 16) {
-                hit = true;
+            for (Mob mob : Spawner.getMobs()) {
+                if (xColl * 16 > mob.pos.x - 10 && xColl * 16 < mob.pos.x + 10
+                        && yColl * 16 > mob.pos.y - 16
+                        && yColl * 16 < mob.pos.y + 16) {
+                    hit = true;
+                    dealDamage(damage, mob);
+                }
             }
         }
         return hit;
     }
 
     public void move() {
-        if (!this.isColliding() && !this.playerHit()) {
+        if (!this.isColliding() && !this.mobHit()) {
             this.pos.x += speed * Math.cos(direction);
             this.pos.y += speed * Math.sin(direction);
-        } else if (this.playerHit()) {
-            dealDamage(damage);
-            this.removed = true;
         } else {
             this.removed = true;
         }
     }
 
-    public void dealDamage(int dmg) {
-        Game.player.setHealth(Game.player.getHealth() - dmg);
+    public void dealDamage(int dmg, Mob mob) {
+        mob.setHealth(mob.getHealth() - dmg);
     }
 
     public void timer() {
@@ -81,7 +81,7 @@ public class Projectile extends Entity {
 
     @Override
     public void render(Screen screen) {
-        screen.renderTile((int) pos.x, (int) pos.y, Tile.knife);
+        screen.renderTile((int) pos.x, (int) pos.y, Tile.bullet);
     }
 
     @Override
