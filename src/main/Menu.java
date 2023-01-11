@@ -2,6 +2,7 @@ package main;
 
 import javax.swing.JOptionPane;
 
+import data.DataBase;
 import graphics.Screen;
 import input.Mouse;
 
@@ -29,6 +30,7 @@ public class Menu {
             // score button
             if (Mouse.getX() > screenWidth / 2 - 100 && Mouse.getX() < screenWidth / 2
                     && Mouse.getY() > screenHeight / 2 + 50 && Mouse.getY() < screenHeight / 2 + 100) {
+                DataBase.readData();
                 Game.currentState = Game.STATES.SCORE;
             }
         }

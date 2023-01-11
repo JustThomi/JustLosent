@@ -18,6 +18,10 @@ public class Spell {
     public void use() {
     }
 
+    public void update() {
+        cooldown();
+    }
+
     public void cooldown() {
         if (isOnCooldown()) {
             timer--;

@@ -28,6 +28,5 @@ public class Skullrain extends Spell {
             this.timer = this.cooldownValue;
             this.onCooldown = true;
         }
-        this.cooldown();
     }
 }

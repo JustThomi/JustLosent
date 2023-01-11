@@ -30,6 +30,5 @@ public class ThrowKnife extends Spell {
             this.timer = this.cooldownValue;
             this.onCooldown = true;
         }
-        this.cooldown();
     }
 }

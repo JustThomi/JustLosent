@@ -1,5 +1,6 @@
 package entity;
 
+import data.DataBase;
 import graphics.Animator;
 import graphics.Screen;
 import graphics.Sprite;
@@ -79,6 +80,7 @@ public class Player extends Mob {
     }
 
     public void die() {
+        DataBase.writeData(username, score);
         resetPlayer();
         Spawner.reset();
         Game.currentState = Game.STATES.OVER;
@@ -139,6 +141,11 @@ public class Player extends Mob {
 
         // remove when lifespan is over
         shots.removeIf(e -> (e.isRemoved()));
+
+        // update cooldown
+        attackSpell.update();
+        healSpell.update();
+        specialSpell.update();
     }
 
     public void move() {

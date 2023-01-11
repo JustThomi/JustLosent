@@ -4,8 +4,8 @@ import graphics.Screen;
 import input.Mouse;
 
 public class Score {
-    public Score() {
 
+    public Score() {
     }
 
     public void handleInput(Screen screen) {

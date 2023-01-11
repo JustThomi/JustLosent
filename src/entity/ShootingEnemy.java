@@ -27,6 +27,7 @@ public class ShootingEnemy extends Mob {
 
     public void update() {
         attackSpell.use();
+        attackSpell.update();
 
         if (health <= 0) {
             die();

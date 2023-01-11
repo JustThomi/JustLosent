@@ -19,6 +19,5 @@ public class Heal extends Spell {
             this.timer = this.cooldownValue;
             this.onCooldown = true;
         }
-        this.cooldown();
     }
 }
