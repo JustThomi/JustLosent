@@ -2,7 +2,6 @@ package main;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 import entity.Player;
 import entity.Spawner;
@@ -49,15 +48,16 @@ public class Game extends Canvas implements Runnable {
     public static Level level;
     protected Menu menu;
     protected Score scoreScene;
+    protected Over overScene;
 
-    protected enum STATES {
+    public enum STATES {
         MENU,
         RUNNING,
         OVER,
         SCORE,
     }
 
-    protected static STATES currentState;
+    public static STATES currentState;
 
     public Game() throws IOException {
         Dimension size = new Dimension(width * scale, height * scale);
@@ -84,6 +84,8 @@ public class Game extends Canvas implements Runnable {
 
         scoreScene = new Score();
         scoreImage = ImageIO.read(new File("src/assets/score.png"));
+
+        overScene = new Over();
     }
 
     public static int getWindowWidth() {
@@ -135,7 +137,6 @@ public class Game extends Canvas implements Runnable {
         switch (currentState) {
             case MENU:
                 menu.update(screen);
-                menu.render(screen);
                 break;
 
             case RUNNING:
@@ -147,17 +148,19 @@ public class Game extends Canvas implements Runnable {
                 // back button
                 if (Mouse.getButton() == 1) {
                     if (Mouse.getX() > getWidth() - 100 && Mouse.getY() < 50) {
+                        player.resetPlayer();
+                        Spawner.reset();
                         Game.currentState = Game.STATES.MENU;
                     }
                 }
                 break;
 
             case OVER:
+                overScene.update(screen);
                 break;
 
             case SCORE:
                 scoreScene.update(screen);
-                scoreScene.render(screen);
                 break;
         }
     }
@@ -198,6 +201,7 @@ public class Game extends Canvas implements Runnable {
                 g.drawString("HP: " + player.getHealth(), 20, 50);
                 g.drawString("SCORE: " + player.getScore(), 20, 100);
                 g.drawString("EXIT", getWidth() - 100, 50);
+                g.drawString(Integer.toString(player.getWave()), getWidth() / 2 - 50, 50);
                 g.drawString(player.getUsername(), 20, 150);
 
                 break;
@@ -226,25 +230,12 @@ public class Game extends Canvas implements Runnable {
                 g.drawImage(scoreImage, 0, 0, getWidth(), getHeight(), frame);
                 // set color and fonts
                 g.setColor(Color.WHITE);
+                g.setFont(new Font("Monocraft", 0, 64));
+
+                g.drawString("GAME OVER", getWidth() / 2 - 200, getHeight() / 2 - 100);
+
                 g.setFont(new Font("Monocraft", 0, 32));
-
-                g.drawString("Replay", getWidth() / 2 - 100, getHeight() / 2 + 50);
-                g.drawString("Exit", getWidth() / 2 - 100, getHeight() / 2 + 100);
-
-                if (Mouse.getX() > getWidth() / 2 - 100 && Mouse.getX() < getWidth() / 2
-                        && Mouse.getY() > getHeight() / 2 && Mouse.getY() < getHeight() / 2 + 50) {
-                    // get and set username
-                    String username = JOptionPane.showInputDialog("Enter a username:");
-                    Game.player.setUsername(username);
-
-                    Game.currentState = Game.STATES.RUNNING;
-                }
-
-                // score button
-                if (Mouse.getX() > getWidth() / 2 - 100 && Mouse.getX() < getWidth() / 2
-                        && Mouse.getY() > getHeight() / 2 + 50 && Mouse.getY() < getHeight() / 2 + 100) {
-                    Game.currentState = Game.STATES.MENU;
-                }
+                g.drawString("Back", getWidth() / 2 - 100, getHeight() / 2 - 50);
 
                 break;
         }

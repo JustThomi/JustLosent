@@ -6,6 +6,7 @@ import graphics.Sprite;
 import input.Keyboard;
 import input.Mouse;
 import level.Level;
+import main.Game;
 import tools.Vector2;
 import spells.*;
 
@@ -14,6 +15,7 @@ public class Player extends Mob {
     protected Keyboard input;
     protected int score;
     protected String username;
+    protected int wave;
 
     private int animationSpeed;
     protected Animator animatorBody;
@@ -30,6 +32,7 @@ public class Player extends Mob {
         this.direction = new Vector2();
         this.health = 100;
         this.score = 0;
+        this.wave = 0;
 
         // hard coded so animation speed can match walking speed
         this.animationSpeed = 500;
@@ -37,6 +40,14 @@ public class Player extends Mob {
                 new Sprite[] { Sprite.player, Sprite.player1 }, animationSpeed);
         this.animatorHead = new Animator(
                 new Sprite[] { Sprite.playerHead, Sprite.playerHead1 }, animationSpeed);
+    }
+
+    public int getWave() {
+        return wave;
+    }
+
+    public void setWave(int i) {
+        this.wave = i;
     }
 
     public void setUsername(String s) {
@@ -60,8 +71,17 @@ public class Player extends Mob {
         return this.score;
     }
 
+    public void resetPlayer() {
+        this.health = 100;
+        this.username = null;
+        this.score = 0;
+        this.wave = 0;
+    }
+
     public void die() {
-        setHealth(0);
+        resetPlayer();
+        Spawner.reset();
+        Game.currentState = Game.STATES.OVER;
     }
 
     public void handleInput() {

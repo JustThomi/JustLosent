@@ -1,6 +1,8 @@
 package entity;
 
 import level.Level;
+import main.Game;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -19,8 +21,14 @@ public class Spawner {
         return mobs;
     }
 
+    public static void reset() {
+        mobs = new ArrayList<Mob>();
+    }
+
     public void spawnWave() {
         int padding = 3 * 16;
+        Game.player.setWave(Game.player.getWave() + 1);
+
         for (int i = 0; i < 5; i++) {
             spawnMob(RNG.nextInt(padding, level.width * 16 - padding),
                     RNG.nextInt(padding, level.height * 16 - padding));

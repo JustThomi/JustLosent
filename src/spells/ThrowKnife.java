@@ -10,6 +10,7 @@ public class ThrowKnife extends Spell {
     public ThrowKnife(Mob caster, int cdValue, Player player) {
         super(caster, cdValue);
         this.target = player;
+        this.onCooldown = true;
     }
 
     @Override
