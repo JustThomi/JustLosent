@@ -13,6 +13,7 @@ public class Player extends Mob {
     protected int speed;
     protected Keyboard input;
     protected int score;
+    protected String username;
 
     private int animationSpeed;
     protected Animator animatorBody;
@@ -36,6 +37,14 @@ public class Player extends Mob {
                 new Sprite[] { Sprite.player, Sprite.player1 }, animationSpeed);
         this.animatorHead = new Animator(
                 new Sprite[] { Sprite.playerHead, Sprite.playerHead1 }, animationSpeed);
+    }
+
+    public void setUsername(String s) {
+        this.username = s;
+    }
+
+    public String getUsername() {
+        return this.username;
     }
 
     public void setPosition(int x, int y) {

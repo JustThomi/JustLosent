@@ -20,7 +20,7 @@ public class Spawner {
     }
 
     public void spawnWave() {
-        int padding = 2 * 16;
+        int padding = 3 * 16;
         for (int i = 0; i < 5; i++) {
             spawnMob(RNG.nextInt(padding, level.width * 16 - padding),
                     RNG.nextInt(padding, level.height * 16 - padding));
