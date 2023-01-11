@@ -41,11 +41,22 @@ public class Game extends Canvas implements Runnable {
     private Spawner spawner;
 
     public static Level level;
+    protected Menu menu;
+
+    protected enum STATES{
+        START,
+        RUNNING,
+        OVER,
+        SCORE,
+    }
+
+    protected static STATES currentState;
 
     public Game() {
         Dimension size = new Dimension(width * scale, height * scale);
         setPreferredSize(size);
 
+        currentState = STATES.START;
         frame = new JFrame();
         screen = new Screen(width, height);
         level = new MainLevel("/assets/level.png");
@@ -60,6 +71,8 @@ public class Game extends Canvas implements Runnable {
         Mouse mouse = new Mouse();
         addMouseListener(mouse);
         addMouseMotionListener(mouse);
+
+        menu = new Menu(mouse);
 
         // spawn test mob
         spawner.spawnMob();
@@ -105,16 +118,32 @@ public class Game extends Canvas implements Runnable {
                 update();
                 delta--;
             }
-            render();
+            if (currentState == STATES.RUNNING){
+                render();
+            }
         }
         stop();
     }
 
     public void update() {
-        keyboard.update();
-        player.update();
-        level.update();
-        spawner.update();
+        switch(currentState){
+            case START:
+                menu.update();
+                break;
+
+            case RUNNING :
+                keyboard.update();
+                player.update();
+                level.update();
+                spawner.update();
+                break;
+
+            case OVER:
+                break;
+
+            case SCORE:
+                break;
+        }
     }
 
     public void render() {

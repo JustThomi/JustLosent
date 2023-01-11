@@ -15,7 +15,7 @@ public class ShootingEnemy extends Mob {
         super(x, y, level);
         this.health = 100;
         this.sprite = Sprite.shootingMob;
-        this.attackSpell = new ThrowKnife(this, 50, Game.player);
+        this.attackSpell = new ThrowKnife(this, 100, Game.player);
     }
 
     public void update() {
