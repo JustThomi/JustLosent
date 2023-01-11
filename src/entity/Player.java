@@ -41,6 +41,10 @@ public class Player extends Mob {
         this.pos.y = y * 16;
     }
 
+    public void die(){
+        setHealth(0);
+    }
+
     public void handleInput() {
         this.direction.x = 0;
         this.direction.y = 0;
@@ -89,6 +93,11 @@ public class Player extends Mob {
         if (!isColliding()) {
             move();
         }
+
+        if(this.health <= 0){
+            die();
+        }
+
         // remove when lifespan is over
         shots.removeIf(e -> (e.isRemoved()));
     }

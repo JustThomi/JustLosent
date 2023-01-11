@@ -5,7 +5,7 @@ import graphics.Sprite;
 import level.Level;
 import main.Game;
 import spells.Spell;
-import spells.throwKnife;
+import spells.ThrowKnife;
 
 public class ShootingEnemy extends Mob {
     protected Sprite sprite;
@@ -15,7 +15,7 @@ public class ShootingEnemy extends Mob {
         super(x, y, level);
         this.health = 100;
         this.sprite = Sprite.shootingMob;
-        this.attackSpell = new throwKnife(this, 50, Game.player);
+        this.attackSpell = new ThrowKnife(this, 50, Game.player);
     }
 
     public void update() {

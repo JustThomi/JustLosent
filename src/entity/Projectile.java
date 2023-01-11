@@ -4,7 +4,6 @@ import graphics.Screen;
 import graphics.Sprite;
 import level.Level;
 import level.tile.Tile;
-// import tools.Vector2;
 import main.Game;
 
 public class Projectile extends Entity {
@@ -49,8 +48,8 @@ public class Projectile extends Entity {
             int xColl = (int) ((this.pos.x) + i % 2 + 5) / 16;
             int yColl = (int) ((this.pos.y) + i / 2 + 13) / 16;
 
-            if (xColl >= Game.player.pos.x - 16 || xColl <= Game.player.pos.x + 16 && yColl >= Game.player.pos.y - 16
-                    || yColl <= Game.player.pos.y + 16) {
+            if (xColl * 16 > Game.player.pos.x - 16 && xColl * 16 < Game.player.pos.x + 16 && yColl * 16 > Game.player.pos.y - 16
+                    && yColl * 16 < Game.player.pos.y + 16) {
                 hit = true;
             }
         }
@@ -58,12 +57,20 @@ public class Projectile extends Entity {
     }
 
     public void move() {
-        if (!this.isColliding()) {
+        if (!this.isColliding() && !this.mobHit()) {
             this.pos.x += speed * Math.cos(direction);
             this.pos.y += speed * Math.sin(direction);
-        } else {
+        } else if(this.mobHit()){
+            dealDamage(damage);
             this.removed = true;
         }
+        else {
+            this.removed = true;
+        }
+    }
+
+    public void dealDamage(int dmg){
+        Game.player.setHealth(Game.player.getHealth() - dmg);
     }
 
     public void timer() {
