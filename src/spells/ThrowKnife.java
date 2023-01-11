@@ -4,10 +4,10 @@ import entity.Mob;
 import entity.Player;
 import entity.Projectile;
 
-public class throwKnife extends Spell {
+public class ThrowKnife extends Spell {
     protected Player target;
 
-    public throwKnife(Mob caster, int cdValue, Player player) {
+    public ThrowKnife(Mob caster, int cdValue, Player player) {
         super(caster, cdValue);
         this.target = player;
     }
