@@ -31,7 +31,7 @@ public class Game extends Canvas implements Runnable {
     public static int scale = 3;
 
     private Thread thread;
-    private JFrame frame;
+    public JFrame frame;
     private boolean running = false;
 
     private Screen screen;
@@ -79,13 +79,13 @@ public class Game extends Canvas implements Runnable {
         addMouseListener(mouse);
         addMouseMotionListener(mouse);
 
-        menu = new Menu();
+        menu = new Menu(this, screen);
         menuImage = ImageIO.read(new File("src/assets/menu.png"));
 
         scoreScene = new Score();
         scoreImage = ImageIO.read(new File("src/assets/score.png"));
 
-        overScene = new Over();
+        overScene = new Over(this, screen);
     }
 
     public static int getWindowWidth() {
@@ -136,7 +136,9 @@ public class Game extends Canvas implements Runnable {
     public void update() {
         switch (currentState) {
             case MENU:
-                menu.update(screen);
+                if (!menu.getButton().isShowing()){
+                    menu.showButtons();
+                }
                 break;
 
             case RUNNING:
@@ -151,12 +153,15 @@ public class Game extends Canvas implements Runnable {
                         player.resetPlayer();
                         Spawner.reset();
                         Game.currentState = Game.STATES.MENU;
+                        menu.showButtons();
                     }
                 }
                 break;
 
             case OVER:
-                overScene.update(screen);
+                if (!overScene.getButton().isShowing()){
+                    overScene.showButtons();
+                }
                 break;
 
             case SCORE:
@@ -208,12 +213,6 @@ public class Game extends Canvas implements Runnable {
 
             case MENU:
                 g.drawImage(menuImage, 0, 0, getWidth(), getHeight(), frame);
-                // set color and fonts
-                g.setColor(Color.WHITE);
-                g.setFont(new Font("Monocraft", 0, 32));
-                // draw stings
-                g.drawString("Start", getWidth() / 2 - 100, getHeight() / 2 + 50);
-                g.drawString("Scores", getWidth() / 2 - 100, getHeight() / 2 + 100);
 
                 break;
 
@@ -231,11 +230,7 @@ public class Game extends Canvas implements Runnable {
                 // set color and fonts
                 g.setColor(Color.WHITE);
                 g.setFont(new Font("Monocraft", 0, 64));
-
                 g.drawString("GAME OVER", getWidth() / 2 - 200, getHeight() / 2 - 100);
-
-                g.setFont(new Font("Monocraft", 0, 32));
-                g.drawString("Back", getWidth() / 2 - 100, getHeight() / 2 - 50);
 
                 break;
         }

@@ -23,7 +23,4 @@ public class Score {
     public void update(Screen screen) {
         handleInput(screen);
     }
-
-    public void render(Screen screen) {
-    }
 }

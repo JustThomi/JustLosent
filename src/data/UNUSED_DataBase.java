@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class DataBase {
+public class UNUSED_DataBase {
 
     public static void readData() {
         try {

@@ -1,6 +1,6 @@
 package entity;
 
-import data.DataBase;
+import data.SaveLoad;
 import graphics.Animator;
 import graphics.Screen;
 import graphics.Sprite;
@@ -80,7 +80,12 @@ public class Player extends Mob {
     }
 
     public void die() {
-        DataBase.writeData(username, score);
+        try {
+            SaveLoad.writeData(username, score);
+        } catch (Exception e) {
+
+        }
+
         resetPlayer();
         Spawner.reset();
         Game.currentState = Game.STATES.OVER;
