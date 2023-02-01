@@ -82,7 +82,7 @@ public class Game extends Canvas implements Runnable {
         menu = new Menu(this, screen);
         menuImage = ImageIO.read(new File("src/assets/menu.png"));
 
-        scoreScene = new Score();
+        scoreScene = new Score(this, screen);
         scoreImage = ImageIO.read(new File("src/assets/score.png"));
 
         overScene = new Over(this, screen);
@@ -136,7 +136,7 @@ public class Game extends Canvas implements Runnable {
     public void update() {
         switch (currentState) {
             case MENU:
-                if (!menu.getButton().isShowing()){
+                if (!menu.getButton().isShowing()) {
                     menu.showButtons();
                 }
                 break;
@@ -159,13 +159,17 @@ public class Game extends Canvas implements Runnable {
                 break;
 
             case OVER:
-                if (!overScene.getButton().isShowing()){
+                if (!overScene.getButton().isShowing()) {
                     overScene.showButtons();
                 }
                 break;
 
             case SCORE:
-                scoreScene.update(screen);
+                if (!scoreScene.getButton().isShowing()) {
+                    scoreScene.showButtons();
+                    scoreScene.showList();
+                    scoreScene.populateList();
+                }
                 break;
         }
     }
@@ -213,16 +217,10 @@ public class Game extends Canvas implements Runnable {
 
             case MENU:
                 g.drawImage(menuImage, 0, 0, getWidth(), getHeight(), frame);
-
                 break;
 
             case SCORE:
                 g.drawImage(scoreImage, 0, 0, getWidth(), getHeight(), frame);
-                // set color and fonts
-                g.setColor(Color.WHITE);
-                g.setFont(new Font("Monocraft", 0, 32));
-                g.drawString("EXIT", getWidth() - 100, 50);
-
                 break;
 
             case OVER:

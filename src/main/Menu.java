@@ -23,22 +23,22 @@ public class Menu {
         initButtons();
     }
 
-    public JButton getButton(){
+    public JButton getButton() {
         return startButton;
     }
 
-    public void hideButtons(){
+    public void hideButtons() {
         startButton.setVisible(false);
         scoreButton.setVisible(false);
     }
 
-    public void showButtons(){
+    public void showButtons() {
         startButton.setVisible(true);
         scoreButton.setVisible(true);
 
     }
 
-    public void initButtons(){
+    public void initButtons() {
         this.startButton = new JButton("Start");
         this.startButton.setBounds((screen.width * 3) / 2 - 100, (screen.height * 3) / 2, 200, 30);
         this.startButton.setFont(new Font("Monocraft", Font.BOLD, 12));
@@ -53,12 +53,11 @@ public class Menu {
         this.scoreButton.setBackground(new Color(24, 24, 24));
         this.scoreButton.setFocusPainted(false);
 
-
-        this.startButton.addActionListener(new ActionListener(){
+        this.startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String username = JOptionPane.showInputDialog("Enter a username:");
-                if(username == null || username == ""){
+                if (username == null || username == "") {
                     username = "USER";
                 }
                 Game.player.setUsername(username);
@@ -66,21 +65,20 @@ public class Menu {
                 hideButtons();
             }
         });
-        
-        this. scoreButton.addActionListener(new ActionListener() {
+
+        this.scoreButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try{
+                try {
                     SaveLoad.readData();
-                }
-                catch(Exception exeption){
+                } catch (Exception exeption) {
                     System.out.println(exeption);
                 }
-                
+
                 Game.currentState = Game.STATES.SCORE;
                 hideButtons();
             }
-        }); 
+        });
 
         game.frame.add(startButton);
         game.frame.add(scoreButton);
