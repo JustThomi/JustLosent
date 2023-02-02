@@ -147,14 +147,11 @@ public class Game extends Canvas implements Runnable {
                 level.update();
                 spawner.update();
 
-                // back button
-                if (Mouse.getButton() == 1) {
-                    if (Mouse.getX() > getWidth() - 100 && Mouse.getY() < 50) {
-                        player.resetPlayer();
-                        Spawner.reset();
-                        Game.currentState = Game.STATES.MENU;
-                        menu.showButtons();
-                    }
+                if (keyboard.esc) {
+                    player.resetPlayer();
+                    Spawner.reset();
+                    Game.currentState = Game.STATES.MENU;
+                    menu.showButtons();
                 }
                 break;
 
@@ -209,7 +206,6 @@ public class Game extends Canvas implements Runnable {
                 // draw stings
                 g.drawString("HP: " + player.getHealth(), 20, 50);
                 g.drawString("SCORE: " + player.getScore(), 20, 100);
-                g.drawString("EXIT", getWidth() - 100, 50);
                 g.drawString(Integer.toString(player.getWave()), getWidth() / 2 - 50, 50);
                 g.drawString(player.getUsername(), 20, 150);
 
