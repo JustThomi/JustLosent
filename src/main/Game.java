@@ -59,6 +59,9 @@ public class Game extends Canvas implements Runnable {
 
     public static STATES currentState;
 
+    /**
+     * @throws IOException
+     */
     public Game() throws IOException {
         Dimension size = new Dimension(width * scale, height * scale);
         setPreferredSize(size);
@@ -88,20 +91,32 @@ public class Game extends Canvas implements Runnable {
         overScene = new Over(this, screen);
     }
 
+    /**
+     * @return windowWidth
+     */
     public static int getWindowWidth() {
         return width * scale;
     }
 
+    /**
+     * @return windowHeight
+     */
     public static int getWindowHeight() {
         return height * scale;
     }
 
+    /**
+     * Starts new thread
+     */
     public synchronized void start() {
         running = true;
         thread = new Thread(this, "Display");
         thread.start();
     }
 
+    /**
+     * Stops thread and exits
+     */
     public synchronized void stop() {
         running = false;
         try {
@@ -111,6 +126,11 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
+    /*
+     * Game loop
+     * 
+     * @see java.lang.Runnable#run()
+     */
     public void run() {
         // Timer
         int fps = 144;
@@ -133,6 +153,9 @@ public class Game extends Canvas implements Runnable {
         stop();
     }
 
+    /**
+     * Update loop for entities
+     */
     public void update() {
         switch (currentState) {
             case MENU:
@@ -171,6 +194,9 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
+    /**
+     * Render entities
+     */
     public void render() {
         BufferStrategy bs = getBufferStrategy();
         if (bs == null) {
@@ -233,6 +259,12 @@ public class Game extends Canvas implements Runnable {
         bs.show();
     }
 
+    /**
+     * Main function
+     * 
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         Game game = new Game();
         game.frame.setResizable(false);

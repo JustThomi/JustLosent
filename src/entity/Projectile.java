@@ -17,6 +17,12 @@ public class Projectile extends Entity {
     // range/lifespan of bullet
     protected int lifespan;
 
+    /**
+     * @param x
+     * @param y
+     * @param level
+     * @param dir
+     */
     public Projectile(int x, int y, Level level, double dir) {
         super(x, y, level);
         this.direction = dir;
@@ -26,6 +32,9 @@ public class Projectile extends Entity {
         this.removed = false;
     }
 
+    /**
+     * @return true if colliding
+     */
     public boolean isColliding() {
         boolean colliding = false;
 
@@ -40,6 +49,9 @@ public class Projectile extends Entity {
         return colliding;
     }
 
+    /**
+     * @return true if player is hit
+     */
     public boolean playerHit() {
         boolean hit = false;
 
@@ -56,6 +68,9 @@ public class Projectile extends Entity {
         return hit;
     }
 
+    /**
+     * Move bullet
+     */
     public void move() {
         if (!this.isColliding() && !this.playerHit()) {
             this.pos.x += speed * Math.cos(direction);
@@ -68,10 +83,16 @@ public class Projectile extends Entity {
         }
     }
 
+    /**
+     * @param dmg deal damage to player if hit
+     */
     public void dealDamage(int dmg) {
         Game.player.setHealth(Game.player.getHealth() - dmg);
     }
 
+    /**
+     * Update bullet timer. Remove bullet if lifespan is zero
+     */
     public void timer() {
         lifespan--;
         if (lifespan <= 0) {
@@ -79,11 +100,21 @@ public class Projectile extends Entity {
         }
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see entity.Entity#render(graphics.Screen)
+     */
     @Override
     public void render(Screen screen) {
         screen.renderTile((int) pos.x, (int) pos.y, Tile.knife);
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see entity.Entity#update()
+     */
     @Override
     public void update() {
         move();

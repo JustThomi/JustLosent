@@ -13,14 +13,27 @@ public class Mob extends Entity {
 
     public ArrayList<Entity> shots = new ArrayList<Entity>();
 
+    /**
+     * @param x
+     * @param y
+     * @param level
+     */
     public Mob(int x, int y, Level level) {
         super(x, y, level);
     }
 
+    /**
+     * Set mobs helth
+     * 
+     * @param nr
+     */
     public void setHealth(int nr) {
         this.health = nr;
     }
 
+    /**
+     * @return mobs health
+     */
     public int getHealth() {
         return this.health;
     }

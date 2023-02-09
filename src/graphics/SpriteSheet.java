@@ -13,6 +13,10 @@ public class SpriteSheet {
     public static SpriteSheet groundSheet = new SpriteSheet("/assets/tileset.png",
             512);
 
+    /**
+     * @param path
+     * @param size
+     */
     public SpriteSheet(String path, int size) {
         this.path = path;
         SIZE = size;
@@ -20,6 +24,9 @@ public class SpriteSheet {
         load();
     }
 
+    /**
+     * Loads sprite
+     */
     private void load() {
         try {
             BufferedImage image = ImageIO.read(getClass().getResource(path));

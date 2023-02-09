@@ -14,26 +14,42 @@ public class Over {
     private Screen screen;
     private JButton backButton;
 
+    /**
+     * @param game
+     * @param screen
+     */
     public Over(Game game, Screen screen) {
         this.game = game;
         this.screen = screen;
         initButtons();
         hideButtons();
     }
-    
-    public JButton getButton(){
+
+    /**
+     * @return backButton
+     */
+    public JButton getButton() {
         return backButton;
     }
 
-    public void hideButtons(){
+    /**
+     * Hides buttons
+     */
+    public void hideButtons() {
         backButton.setVisible(false);
     }
 
-    public void showButtons(){
+    /**
+     * showButtons
+     */
+    public void showButtons() {
         backButton.setVisible(true);
     }
 
-    public void initButtons(){
+    /**
+     * Initiate button look and feel
+     */
+    public void initButtons() {
         this.backButton = new JButton("Back");
         this.backButton.setBounds((screen.width * 3) / 2 - 100, (screen.height * 3) / 2, 200, 30);
         this.backButton.setFont(new Font("Monocraft", Font.BOLD, 12));
@@ -41,7 +57,7 @@ public class Over {
         this.backButton.setBackground(new Color(24, 24, 24));
         this.backButton.setFocusPainted(false);
 
-        this.backButton.addActionListener(new ActionListener(){
+        this.backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Game.currentState = Game.STATES.MENU;

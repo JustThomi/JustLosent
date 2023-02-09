@@ -17,27 +17,43 @@ public class Menu {
     private JButton startButton;
     private JButton scoreButton;
 
+    /**
+     * @param game
+     * @param screen
+     */
     public Menu(Game game, Screen screen) {
         this.game = game;
         this.screen = screen;
         initButtons();
     }
 
+    /**
+     * @return startButton
+     */
     public JButton getButton() {
         return startButton;
     }
 
+    /**
+     * Hides buttons
+     */
     public void hideButtons() {
         startButton.setVisible(false);
         scoreButton.setVisible(false);
     }
 
+    /**
+     * Shows Buttons
+     */
     public void showButtons() {
         startButton.setVisible(true);
         scoreButton.setVisible(true);
 
     }
 
+    /**
+     * Initiate button look and feel
+     */
     public void initButtons() {
         this.startButton = new JButton("Start");
         this.startButton.setBounds((screen.width * 3) / 2 - 100, (screen.height * 3) / 2, 200, 30);

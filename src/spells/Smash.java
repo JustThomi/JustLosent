@@ -5,16 +5,30 @@ import entity.PlayerProjectile;
 
 public class Smash extends Spell {
 
+    /**
+     * @param caster
+     * @param cdValue
+     */
     public Smash(Mob caster, int cdValue) {
         super(caster, cdValue);
     }
 
+    /**
+     * Spawns Projectiles
+     * 
+     * @param dir
+     */
     public void spawnProjectile(double dir) {
         PlayerProjectile p = new PlayerProjectile((int) caster.pos.x, (int) caster.pos.y, caster.level, dir);
         caster.shots.add(p);
         caster.level.addEntity(p);
     }
 
+    /*
+     * Use ability
+     * 
+     * @see spells.Spell#use()
+     */
     @Override
     public void use() {
         // testing some ideas

@@ -7,10 +7,19 @@ import main.Game;
 
 public class Skullrain extends Spell {
 
+    /**
+     * @param caster
+     * @param cdValue
+     */
     public Skullrain(Mob caster, int cdValue) {
         super(caster, cdValue);
     }
 
+    /*
+     * Use ability
+     * 
+     * @see spells.Spell#use()
+     */
     @Override
     public void use() {
         if (!isOnCooldown()) {

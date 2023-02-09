@@ -23,15 +23,29 @@ public class Tile {
     public static Tile bullet = new Tile(Sprite.bullet, false);
     public static Tile knife = new Tile(Sprite.knife, false);
 
+    /**
+     * @param sprite
+     * @param solid
+     */
     public Tile(Sprite sprite, boolean solid) {
         this.sprite = sprite;
         this.solid = solid;
     }
 
+    /**
+     * Renders tile to screen
+     * 
+     * @param x
+     * @param y
+     * @param screen
+     */
     public void render(int x, int y, Screen screen) {
         screen.renderTile(x << 4, y << 4, this);
     }
 
+    /**
+     * @return true if tile is solid/collidable
+     */
     public boolean isSolid() {
         return solid;
     }

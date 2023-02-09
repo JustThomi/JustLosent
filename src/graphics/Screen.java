@@ -14,6 +14,10 @@ public class Screen {
     private static Random random = new Random();
     public int xOffset, yOffset;
 
+    /**
+     * @param width
+     * @param height
+     */
     public Screen(int width, int height) {
         this.width = width;
         this.height = height;
@@ -24,25 +28,47 @@ public class Screen {
         }
     }
 
+    /**
+     * @return screen width
+     */
     public int getWidth() {
         return width;
     }
 
+    /**
+     * @return screen height
+     */
     public int getHeight() {
         return height;
     }
 
+    /**
+     * clears pixel buffer
+     */
     public void clear() {
         for (int i = 0; i < width * height; i++) {
             pixels[i] = 0;
         }
     }
 
+    /**
+     * Set screen offset
+     * 
+     * @param xOffset
+     * @param yOffset
+     */
     public void setOffset(int xOffset, int yOffset) {
         this.xOffset = xOffset;
         this.yOffset = yOffset;
     }
 
+    /**
+     * Render tiles
+     * 
+     * @param xtile
+     * @param ytile
+     * @param tile
+     */
     public void renderTile(int xtile, int ytile, Tile tile) {
         xtile -= xOffset;
         ytile -= yOffset;
@@ -67,6 +93,14 @@ public class Screen {
         }
     }
 
+    /**
+     * Render player sprite
+     * 
+     * @param xPlayer
+     * @param yPlayer
+     * @param sprite
+     * @param flipped
+     */
     public void renderPlayer(int xPlayer, int yPlayer, Sprite sprite, boolean flipped) {
         xPlayer -= xOffset;
         yPlayer -= yOffset;
@@ -88,6 +122,13 @@ public class Screen {
         }
     }
 
+    /**
+     * Renders all sprites
+     * 
+     * @param xSprite
+     * @param ySprite
+     * @param sprite
+     */
     public void renderSprite(int xSprite, int ySprite, Sprite sprite) {
         xSprite -= xOffset;
         ySprite -= yOffset;

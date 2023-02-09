@@ -8,6 +8,9 @@ public class Keyboard implements KeyListener {
     public boolean w, a, s, d;
     public boolean space, esc;
 
+    /**
+     * Updates pressed buttons
+     */
     public void update() {
         w = keys[KeyEvent.VK_W];
         a = keys[KeyEvent.VK_A];
@@ -17,16 +20,31 @@ public class Keyboard implements KeyListener {
         esc = keys[KeyEvent.VK_ESCAPE];
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         keys[e.getKeyCode()] = true;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent)
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         keys[e.getKeyCode()] = false;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
+     */
     @Override
     public void keyTyped(KeyEvent e) {
     }

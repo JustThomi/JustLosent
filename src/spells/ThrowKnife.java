@@ -7,12 +7,22 @@ import entity.Projectile;
 public class ThrowKnife extends Spell {
     protected Player target;
 
+    /**
+     * @param caster
+     * @param cdValue
+     * @param player
+     */
     public ThrowKnife(Mob caster, int cdValue, Player player) {
         super(caster, cdValue);
         this.target = player;
         this.onCooldown = true;
     }
 
+    /*
+     * Use ability
+     * 
+     * @see spells.Spell#use()
+     */
     @Override
     public void use() {
         if (!isOnCooldown()) {

@@ -20,6 +20,10 @@ public class Score {
     protected JList<String> scores;
     protected DefaultListModel<String> listModel;
 
+    /**
+     * @param game
+     * @param screen
+     */
     public Score(Game game, Screen screen) {
         this.game = game;
         this.screen = screen;
@@ -30,6 +34,9 @@ public class Score {
         hideButtons();
     }
 
+    /**
+     * Fill list with items
+     */
     public void populateList() {
         String[] values = SaveLoad.getScores();
         listModel.clear();
@@ -39,26 +46,44 @@ public class Score {
         }
     }
 
+    /**
+     * @return backButtons
+     */
     public JButton getButton() {
         return backButton;
     }
 
+    /**
+     * Make list visible
+     */
     public void showList() {
         this.scores.setVisible(true);
     }
 
+    /**
+     * Hide list
+     */
     public void hideList() {
         this.scores.setVisible(false);
     }
 
+    /**
+     * Hide buttons
+     */
     public void hideButtons() {
         backButton.setVisible(false);
     }
 
+    /**
+     * Show buttons
+     */
     public void showButtons() {
         backButton.setVisible(true);
     }
 
+    /**
+     * Populate list
+     */
     public void initList() {
         this.scores.setBounds((screen.width * 3) / 2 - 250, 10, 500, 500);
         this.scores.setForeground(new Color(255, 255, 255));
@@ -69,6 +94,9 @@ public class Score {
         game.frame.add(this.scores);
     }
 
+    /**
+     * Initiate button look and feel
+     */
     public void initButtons() {
         this.backButton = new JButton("Back");
         this.backButton.setBounds((screen.width * 3) - 110, 10, 100, 30);

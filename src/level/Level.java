@@ -16,6 +16,10 @@ public class Level {
 
     protected ArrayList<Entity> entities = new ArrayList<Entity>();
 
+    /**
+     * @param width
+     * @param height
+     */
     public Level(
             int width,
             int height) {
@@ -26,10 +30,16 @@ public class Level {
         generateLevel();
     }
 
+    /**
+     * @param path
+     */
     public Level(String path) {
         this.path = path;
     }
 
+    /**
+     * Generates random level filled with colored tiles
+     */
     protected void generateLevel() {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
@@ -38,16 +48,26 @@ public class Level {
         }
     }
 
+    /**
+     * Prototype for loading levels
+     * 
+     * @param path a path to an image
+     */
     protected void loadLevel(String path) {
     }
 
-    protected void time() {
-    }
-
+    /**
+     * Add an entity to the entities list
+     * 
+     * @param e entity
+     */
     public void addEntity(Entity e) {
         entities.add(e);
     }
 
+    /**
+     * Updates entities from list
+     */
     public void update() {
         for (Entity entity : entities) {
             entity.update();
@@ -56,6 +76,11 @@ public class Level {
         entities.removeIf(e -> (e.isRemoved()));
     }
 
+    /**
+     * @param x
+     * @param y
+     * @return tile in given x and y position
+     */
     public Tile getTile(int x, int y) {
         if (x < 0 || y < 0 || x >= width || y >= height)
             return Tile.voidTile;
@@ -68,6 +93,13 @@ public class Level {
         return Tile.ground;
     }
 
+    /**
+     * Renders tiles to the screen
+     * 
+     * @param xScroll
+     * @param yScroll
+     * @param screen
+     */
     public void render(int xScroll, int yScroll, Screen screen) {
         screen.setOffset(xScroll, yScroll);
 

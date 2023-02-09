@@ -37,6 +37,12 @@ public class Sprite {
     // Mobs
     public static Sprite shootingMob = new Sprite(16, 27, 7, SpriteSheet.groundSheet);
 
+    /**
+     * @param size
+     * @param x
+     * @param y
+     * @param sheet
+     */
     public Sprite(
             int size,
             int x,
@@ -49,6 +55,10 @@ public class Sprite {
         load();
     }
 
+    /**
+     * @param size
+     * @param color
+     */
     public Sprite(int size, int color) {
         SIZE = size;
         pixels = new int[size * size];
@@ -58,6 +68,9 @@ public class Sprite {
         }
     }
 
+    /**
+     * Loads sprite
+     */
     private void load() {
         for (int y = 0; y < SIZE; y++) {
             for (int x = 0; x < SIZE; x++) {

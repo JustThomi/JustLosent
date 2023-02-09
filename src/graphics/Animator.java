@@ -6,6 +6,10 @@ public class Animator {
     private int animationClock;
     private int animationSpeed;
 
+    /**
+     * @param frames
+     * @param speed
+     */
     public Animator(Sprite[] frames, int speed) {
         this.frames = frames;
         this.animationSpeed = speed;
@@ -14,6 +18,9 @@ public class Animator {
         this.animationClock = 0;
     }
 
+    /**
+     * Update animation frames and timer
+     */
     public void handleAnimation() {
         if (animationClock > 10000)
             animationClock = 0;
@@ -25,6 +32,9 @@ public class Animator {
         }
     }
 
+    /**
+     * Equips next frame of the animation
+     */
     public void nextSprite() {
         if (current >= frames.length - 1)
             current = 0;
@@ -32,6 +42,9 @@ public class Animator {
             current++;
     }
 
+    /**
+     * @return current frame of animation
+     */
     public Sprite getCurrentSprite() {
         return frames[current];
     }

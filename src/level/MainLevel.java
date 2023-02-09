@@ -8,11 +8,17 @@ import level.tile.Tile;
 
 public class MainLevel extends Level {
 
+    /**
+     * @param path to image
+     */
     public MainLevel(String path) {
         super(path);
         loadLevel(path);
     }
 
+    /*
+     * @see level.Level#loadLevel(java.lang.String)
+     */
     @Override
     protected void loadLevel(String path) {
         try {
@@ -35,6 +41,9 @@ public class MainLevel extends Level {
     // 0xFFFF00 (yellow) - cracked ground
     // to be continued
 
+    /*
+     * @see level.Level#getTile(int, int)
+     */
     @Override
     public Tile getTile(int x, int y) {
         if (x < 0 || y < 0 || x >= width || y >= height)

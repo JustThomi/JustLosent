@@ -26,6 +26,13 @@ public class Player extends Mob {
     protected Spell specialSpell = new Smash(this, 100);
     protected Spell healSpell = new Heal(this, 400);
 
+    /**
+     * @param x
+     * @param y
+     * @param level
+     * @param speed
+     * @param keyboard
+     */
     public Player(int x, int y, Level level, int speed, Keyboard keyboard) {
         super(x, y, level);
         this.input = keyboard;
@@ -43,35 +50,68 @@ public class Player extends Mob {
                 new Sprite[] { Sprite.playerHead, Sprite.playerHead1 }, animationSpeed);
     }
 
+    /**
+     * @return current wave
+     */
     public int getWave() {
         return wave;
     }
 
+    /**
+     * Sets wave number
+     * 
+     * @param i
+     */
     public void setWave(int i) {
         this.wave = i;
     }
 
+    /**
+     * Sets player user name
+     * 
+     * @param s
+     */
     public void setUsername(String s) {
         this.username = s;
     }
 
+    /**
+     * @return player username
+     */
     public String getUsername() {
         return this.username;
     }
 
+    /**
+     * Set plaer position
+     * 
+     * @param x
+     * @param y
+     */
     public void setPosition(int x, int y) {
         this.pos.x = x * 16;
         this.pos.y = y * 16;
     }
 
+    /**
+     * Add point to score counter
+     * 
+     * @param points
+     */
     public void addScore(int points) {
         this.score += points;
     }
 
+    /**
+     * @return current score
+     */
     public int getScore() {
         return this.score;
     }
 
+    /**
+     * Reset player health username score and wave
+     */
     public void resetPlayer() {
         this.health = 100;
         this.username = null;
@@ -79,6 +119,9 @@ public class Player extends Mob {
         this.wave = 0;
     }
 
+    /**
+     * kills player to save data and reset
+     */
     public void die() {
         try {
             SaveLoad.writeData(username, score);
@@ -91,6 +134,9 @@ public class Player extends Mob {
         Game.currentState = Game.STATES.OVER;
     }
 
+    /**
+     * Handles keyboard and mouse input for player actions
+     */
     public void handleInput() {
         this.direction.x = 0;
         this.direction.y = 0;
@@ -119,6 +165,9 @@ public class Player extends Mob {
         }
     }
 
+    /**
+     * @return true if collides
+     */
     public boolean isColliding() {
         boolean colliding = false;
 
@@ -133,6 +182,11 @@ public class Player extends Mob {
         return colliding;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see entity.Entity#update()
+     */
     @Override
     public void update() {
         handleInput();
@@ -153,11 +207,19 @@ public class Player extends Mob {
         specialSpell.update();
     }
 
+    /**
+     * Move player
+     */
     public void move() {
         this.direction.multiply(speed);
         this.pos.add(direction);
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see entity.Entity#render(graphics.Screen)
+     */
     public void render(Screen screen) {
         boolean flip;
 
